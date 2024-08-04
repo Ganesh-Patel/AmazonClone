@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../Redux/Slices/authSlice'; 
+import { login } from '../../Redux/Slices/authSlice';
+import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const authStatus = useSelector((state) => state.auth.status);
+  const authError = useSelector((state) => state.auth.error);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    dispatch(login(email, password, navigate));
   };
 
   return (
@@ -40,10 +44,10 @@ function Login() {
               required
             />
           </div>
-          <button type="submit" className={styles.button} >
-           Login
+          <button type="submit" className={styles.button}>
+            {authStatus === 'loading' ? 'Loading...' : 'Login'}
           </button>
-
+          {authError && <p className={styles.error}>{authError}</p>}
         </form>
       </div>
     </div>

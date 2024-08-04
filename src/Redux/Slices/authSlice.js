@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import auth from '../../../firebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-
+import { toast } from 'react-toastify'; 
 const initialState = {
   user: null,
   status: 'idle',
@@ -11,7 +10,7 @@ const initialState = {
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: initialState,
+  initialState,
   reducers: {
     setUser(state, action) {
       state.user = action.payload;
@@ -25,21 +24,26 @@ const authSlice = createSlice({
   },
 });
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (email, password, navigate) => async (dispatch) => {
   try {
     dispatch(setStatus('loading'));
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    dispatch(setUser(userCredential.user));
+    dispatch(setUser({
+      uid: userCredential.user.uid,
+      email: userCredential.user.email,
+      displayName: userCredential.user.displayName,
+    }));
     dispatch(setStatus('succeeded'));
-    alert('login successful');
-    useNavigate('/home');
+    toast.success('Login successful'); // Show success toast
+    navigate('/home');
   } catch (error) {
     dispatch(setError(error.message));
     dispatch(setStatus('failed'));
+    toast.error(`Login failed: ${error.message}`); 
   }
 };
 
-export const signup = (email, password) => async (dispatch) => {
+export const signup = (email, password, navigate) => async (dispatch) => {
   try {
     dispatch(setStatus('loading'));
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -48,27 +52,27 @@ export const signup = (email, password) => async (dispatch) => {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      // Add other serializable fields you need
     }));
     dispatch(setStatus('succeeded'));
-    alert('Signup successful');
-    useNavigate('/login');
+    toast.success('Signup successful'); 
+    navigate('/login');
   } catch (error) {
-    console.error('Signup error:', error);
     dispatch(setError(error.message));
     dispatch(setStatus('failed'));
+    toast.error(`Signup failed: ${error.message}`); 
   }
 };
-
 
 export const logout = () => async (dispatch) => {
   try {
     await signOut(auth);
     dispatch(setUser(null));
+    toast.info('Logged out successfully'); 
   } catch (error) {
     dispatch(setError(error.message));
+    toast.error(`Logout failed: ${error.message}`); 
   }
 };
 
 export default authSlice.reducer;
-export const { setUser, setStatus, setError } = authSlice.actions; // Corrected here
+export const { setUser, setStatus, setError } = authSlice.actions;

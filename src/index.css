@@ -1,4 +1,18 @@
-/* src/index.css */
+/* TailwindCSS theme extension */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .bg-amazon-orange {
+    background-color: #F5A623;
+  }
+
+  .bg-amazon-orange-dark {
+    background-color: #F2A11D;
+  }
+
+  .text-amazon-blue {
+    color: #007185;
+  }
+}
