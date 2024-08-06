@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useGlobalState } from '../../myContexts/GlobalStateContext';
 import deals from '../../AllData/deals';
 import Card from './../CreateCard/Card'; // Import the Card component
 import FilterSidebar from './../../Filters/Sidebarfilter/FilterSidebar'; // Import the FilterSidebar component
 import styles from './Appliances.module.css';
 import { toast } from 'react-toastify';
+import { SearchContext } from '../../myContexts/SearchContext'; // Import the SearchContext
 
 function Appliances() {
   const { setCartItems } = useGlobalState();
+  const { searchTerm } = useContext(SearchContext); // Use the SearchContext
   const [filteredData, setFilteredData] = useState(deals[0]?.data?.deals || []);
   const [allDeals, setAllDeals] = useState(deals[0]?.data?.deals || []); // Store all deals for resetting filters
 
@@ -58,6 +60,14 @@ function Appliances() {
   };
 
   useEffect(() => {
+    // Filter data based on search term
+    const searchFilteredData = allDeals.filter(item =>
+      item.deal_title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredData(searchFilteredData);
+  }, [searchTerm, allDeals]);
+
+  useEffect(() => {
     // Reset filters when deals change
     setAllDeals(deals[0]?.data?.deals || []);
   }, [deals]);
@@ -66,7 +76,6 @@ function Appliances() {
     <div className={styles.container}>
       <FilterSidebar onFilterChange={handleFilterChange} />
       <div className={styles.content}>
-        {/* <h2 className={styles.title}>Appliance Deals</h2> */}
         <div className={styles.dealList}>
           {filteredData.length > 0 ? (
             filteredData.map((deal, index) => (

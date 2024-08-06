@@ -8,18 +8,21 @@ import store from './Redux/store'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GlobalStateProvider } from './Components/myContexts/GlobalStateContext';
+import { SearchProvider } from './Components/myContexts/SearchContext';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <React.StrictMode>
-  <GlobalStateProvider>
-    <Provider store={store}>
-      <BrowserRouter>
-        <ToastContainer />
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </GlobalStateProvider>
+    <SearchProvider>
+      <GlobalStateProvider>
+        <Provider store={store}>
+          <BrowserRouter>
+            <ToastContainer />
+            <App />
+          </BrowserRouter>
+        </Provider>
+      </GlobalStateProvider>
+    </SearchProvider>
   </React.StrictMode>,
 )

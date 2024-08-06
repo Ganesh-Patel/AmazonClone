@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaUser, FaShoppingCart, FaMapMarkerAlt, FaBars, FaTimes, FaFlag } from 'react-icons/fa';
 import { GoTriangleDown } from 'react-icons/go';
@@ -9,6 +9,8 @@ import LeftSidebar from '../LeftSidebar/LeftSidebar';
 import style from './Nav.module.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategoryList } from '../../../Redux/Slices/categorySlice'; 
+import { useSearch } from '../../Filters/useSearch';
+import { SearchContext } from '../../myContexts/SearchContext';
 
 function Nav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -24,6 +26,16 @@ function Nav() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const accountMenuRef = useRef(null);
+
+  // const { setSearchTerm } = useSearch();
+  // const handleSearchChange = (e) => {
+  //   console.log(e.target.value);
+  //   console.log('search handler called here');
+  //   setSearchTerm(e.target.value);
+  // };
+
+  const { searchTerm, setSearchTerm } = useContext(SearchContext);
+
 
   const { data: categoryList, loading, error } = useSelector((state) => state.category);
 
@@ -118,6 +130,7 @@ function Nav() {
           </select>
           <input
             type="text"
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="flex-grow p-2 border-none focus:outline-none h-full text-black"
             placeholder="Search Amazon.in"
           />
