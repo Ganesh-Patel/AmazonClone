@@ -1,63 +1,46 @@
-.container {
-  display: flex;
-  align-items: flex-start; /* Align the content and sidebar to the top */
-  padding: 20px;
-}
-
-.filterSidebar {
-  width: 250px; /* Set a fixed width for the sidebar */
-  margin-right: 20px; /* Add space between the sidebar and the main content */
-}
-
-.content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.dealList {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.dealCard {
+.card {
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
-  width: 250px; /* Adjust card width to your preference */
+  width: calc(30% - 20px); /* Adjust width as needed */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
+  margin-right: 10px; 
 }
 
-.dealCard:hover {
+.card:hover {
   transform: translateY(-5px);
 }
 
-.dealImage {
+.image {
+  padding: 8px;
   width: 100%;
-  height: 150px; /* Set a fixed height for the image */
-  object-fit: cover; /* Ensure the image covers the area */
+  height: 60%;
+  object-fit: cover;
+  object-position: center;
+
 }
 
-.dealInfo {
+.info {
   padding: 15px;
 }
 
-.dealTitle, .title {
+.title {
   font-size: 1.1rem;
   font-weight: bold;
   margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.dealPrice {
+.price {
   color: #b12704;
   font-size: 1.2rem;
   margin: 10px 0;
 }
 
-.listPrice {
+.originalPrice {
   text-decoration: line-through;
   color: #565959;
   font-size: 1rem;
@@ -66,12 +49,19 @@
 
 .savings {
   color: #007600;
+  font-size: 14px; /* Matching the savings font size */
   margin-bottom: 10px;
 }
 
-.dealLink {
+.additionalInfo {
+  font-size: 14px; /* Ensuring consistency in font size */
+  color: #666;
+}
+
+.link {
   display: inline-block;
-  padding: 10px 15px;
+  padding: 5px;
+  margin: 5px;
   background-color: #ffa41c;
   color: white;
   text-decoration: none;
@@ -79,22 +69,23 @@
   transition: background-color 0.2s ease;
 }
 
-.dealLink:hover {
+.link:hover {
   background-color: #f90;
 }
 
-.addToCartButton {
+.actionButton {
   display: inline-block;
-  padding: 5px 8px;
+  padding: 5px;
   background-color: #ffa41c;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  margin: 5px;
+  margin: 2px;
+ 
 }
 
-.addToCartButton:hover {
+.actionButton:hover {
   background-color: #f90;
 }

@@ -79,10 +79,10 @@ function Nav() {
 
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
-
+    const categoryPath = selectedCategory.toLowerCase().replace(/\s+/g, '-');
     // Navigate to the route based on the selected category
     if (selectedCategory !== 'all') {
-      navigate(`/${selectedCategory.toLowerCase()}`);
+      navigate(`/${categoryPath.toLowerCase()}`);
     } else {
       navigate('/'); // Or handle the 'all' option as needed
     }
@@ -248,7 +248,7 @@ function Nav() {
           {/* Mobile menu content here */}
         </div>
       )}
-      <div style={{width:"100vw", backgroundColor:"#242F3E"}} className="left-0 w-full text-white py-1 Nav2">
+      <div style={{width:"100%", backgroundColor:"#242F3E"}} className="left-0 w-full text-white py-1 Nav2">
         <div className="flex items-center justify-between max-w-full px-2">
           {/* Hamburger Icon */}
           <button onClick={toggleSidebar} className="text-white">

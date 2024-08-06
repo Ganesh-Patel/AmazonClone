@@ -11,6 +11,7 @@ import Cart from './Components/AllPages/Cart/Cart';
 import MyOrder from './Components/AllPages/MyOrders/MyOrder';
 import Appliances from './Components/AllPages/Appliances/Appliances';
 import Recom from './Components/Recommendations/Recommendations';
+import Mobiles from './Components/AllPages/Mobiles/Mobiles';
 
 
 
@@ -35,7 +36,7 @@ const onDeleteItem = (itemId) => {
 
   return (
 
-    <div className="App">
+    <div className="App" style={{ overflowX: 'hidden'}}>
       {showHeaderFooter && <Header />}
       <Routes>
         {/* <Route path="/" element={<Login />} /> */}
@@ -44,6 +45,7 @@ const onDeleteItem = (itemId) => {
         <Route path="/home" element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/appliances" element={<Appliances />} />
+        <Route path='/cell-phones-&-accessories' element={<Mobiles />} />
         <Route
           path="/cart"
           element={<Cart
