@@ -1,0 +1,73 @@
+.orderContainer {
+    padding: 20px;
+    min-height: 80vh;
+    background-color: #f9f9f9;
+  }
+  .noOrdersMessage {
+    min-height: 80vh;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    margin-top: 50px;
+  }
+  .orderDetails {
+    max-width: 800px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orderDetails h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .orderDetails h2 {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .orderDetails p {
+    margin: 5px 0;
+  }
+  
+  .orderItem {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  
+  .itemImage {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+  }
+  
+  .itemDetails {
+    flex-grow: 1;
+  }
+  
+  .itemName {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .itemPrice {
+    margin: 5px 0;
+  }
+  
+  .itemQuantity {
+    margin: 5px 0;
+  }
+  
+  .totalPrice {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  

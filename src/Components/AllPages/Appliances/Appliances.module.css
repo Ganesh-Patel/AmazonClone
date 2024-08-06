@@ -1,0 +1,85 @@
+.container {
+    padding: 20px;
+  }
+  
+  .dealList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .dealCard {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    width: calc(25% - 20px); /* Adjust based on your design */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .dealCard:hover {
+    transform: translateY(-5px);
+  }
+  
+  .dealImage {
+    width: 100%;
+    height: 60%;
+  }
+  
+  .dealInfo {
+    padding: 15px;
+  }
+  
+  .dealTitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .dealPrice {
+    color: #b12704;
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  
+  .listPrice {
+    text-decoration: line-through;
+    color: #565959;
+    font-size: 1rem;
+    margin-left: 8px;
+  }
+  
+  .savings {
+    color: #007600;
+    margin-bottom: 10px;
+  }
+  
+  .dealLink {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #ffa41c;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .dealLink:hover {
+    background-color: #f90;
+  }
+  .addToCartButton {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #ffa41c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin: 10px;
+  }
+  
+  .addToCartButton:hover {
+    background-color: #f90;
+  }
+  

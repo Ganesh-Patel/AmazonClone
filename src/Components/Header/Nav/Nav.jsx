@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaUser, FaShoppingCart, FaMapMarkerAlt, FaBars, FaTimes, FaFlag } from 'react-icons/fa';
 import { GoTriangleDown } from 'react-icons/go';
 import amazonLogo from '../../../assets/logo.png';
 import indiaFlag from '../../../assets/indiaflag.png';
 import saleindia from '../../../assets/saleind.png';
+import LeftSidebar from '../LeftSidebar/LeftSidebar';
+import style from './Nav.module.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCategoryList } from '../../../Redux/Slices/categorySlice'; 
 
 function Nav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,6 +16,20 @@ function Nav() {
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('EN');
   const [tempLanguage, setTempLanguage] = useState(selectedLanguage);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const { user, status } = useSelector((state) => state.auth);
+  console.log(user, status);
+
+
+  const dispatch = useDispatch();
+
+  const { data: categoryList, loading, error } = useSelector((state) => state.category);
+
+  
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -40,7 +58,7 @@ function Nav() {
   };
 
   return (
-    <div className="bg-gray-800 text-white p-1 relative">
+    <div className=" text-white p-1 relative" style={{ backgroundColor: "#131921" }}>
       <div className="flex items-center justify-between max-w-7xl mx-auto px-4">
         <div className="flex items-center">
           <div className="group border border-transparent p-2 group-hover:border-white">
@@ -62,10 +80,11 @@ function Nav() {
         <div className="flex flex-1 mx-4 items-center bg-gray-700 rounded-md overflow-hidden lg:ml-6">
           <select className="p-2 flex-shrink-0 border-none bg-gray-700 text-white focus:outline-none h-full w-14">
             <option value="all">All</option>
-            <option value="electronics">Electronics</option>
-            <option value="fashion">Fashion</option>
-            <option value="home">Home</option>
-            {/* Add more options as needed */}
+            {categoryList.map((category) => (
+              <option key={category.id} value={category.name}>
+                {category.name}
+              </option>
+            ))}
           </select>
           <input
             type="text"
@@ -87,19 +106,21 @@ function Nav() {
           </div>
           <div className="flex flex-col items-start cursor-pointer group" onClick={toggleAccountMenu}>
             <div className="flex flex-col items-start border border-transparent p-2 group-hover:border-white">
-              <span className="text-xs">Hello, Sign in</span>
+              <span className="text-xs">{status === 'succeeded' && user ? user.displayName || user.email : 'Sign In'}</span>
               <span className="flex items-center space-x-1">
                 <span className="font-bold">Account & Lists</span>
                 <GoTriangleDown />
               </span>
             </div>
           </div>
+          <Link to="/myorders" className="flex items-center space-x-1 cursor-pointer group">
           <div className="flex flex-col items-start cursor-pointer group">
             <div className="flex flex-col items-start border border-transparent p-2 group-hover:border-white">
               <span className="text-xs">Returns</span>
               <span className="font-bold">& Orders</span>
             </div>
           </div>
+          </Link>
           <Link to="/cart" className="flex items-center space-x-1 cursor-pointer group">
             <div className="flex gap-3 items-center border border-transparent p-2 group-hover:border-white">
               <FaShoppingCart className="text-2xl" />
@@ -192,10 +213,10 @@ function Nav() {
           {/* Mobile menu content here */}
         </div>
       )}
-      <div className="bg-gray-900 text-white py-1">
-        <div className="flex items-center justify-between max-w-7xl mx-auto px-4">
+      <div style={{width:"100vw", backgroundColor:"#242F3E"}} className="left-0 w-full text-white py-1 Nav2">
+        <div className="flex items-center justify-between max-w-full px-2">
           {/* Hamburger Icon */}
-          <button className="text-white">
+          <button onClick={toggleSidebar} className="text-white">
             <FaBars />
           </button>
 
@@ -265,7 +286,7 @@ function Nav() {
           />
         </div>
       </div>
-
+      <LeftSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
 
     </div>
   );
