@@ -37,10 +37,11 @@ const onDeleteItem = (itemId) => {
     <div className="App">
       {showHeaderFooter && <Header />}
       <Routes>
-        <Route path="/" element={<Login />} />
+        {/* <Route path="/" element={<Login />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/appliances" element={<Appliances />} />
         <Route
           path="/cart"
