@@ -2,6 +2,7 @@ import React from 'react';
 import { useGlobalState } from '../../myContexts/GlobalStateContext';
 import deals from '../../AllData/deals';
 import styles from './Appliances.module.css';
+import { toast } from 'react-toastify';
 
 function Appliances() {
   const { setCartItems } = useGlobalState();
@@ -18,6 +19,7 @@ function Appliances() {
     };
 
     setCartItems((prevItems) => [...prevItems, newItem]);
+    toast('Item added to cart!');
   };
 
   const dealItems = deals[0]?.data?.deals || [];

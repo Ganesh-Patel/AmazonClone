@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaUser, FaShoppingCart, FaMapMarkerAlt, FaBars, FaTimes, FaFlag } from 'react-icons/fa';
 import { GoTriangleDown } from 'react-icons/go';
@@ -21,8 +21,9 @@ function Nav() {
   const { user, status } = useSelector((state) => state.auth);
   console.log(user, status);
 
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const accountMenuRef = useRef(null);
 
   const { data: categoryList, loading, error } = useSelector((state) => state.category);
 
@@ -56,7 +57,36 @@ function Nav() {
     setTempLanguage(selectedLanguage);
     setIsLanguageMenuOpen(false);
   };
+  const handleLinkClick = () => {
+    setIsAccountMenuOpen(false); // Close the account menu
+  };
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (accountMenuRef.current && !accountMenuRef.current.contains(event.target)) {
+        setIsAccountMenuOpen(false);
+      }
+    }
+
+    // Bind the event listener
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Unbind the event listener on cleanup
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleCategoryChange = (event) => {
+    const selectedCategory = event.target.value;
+
+    // Navigate to the route based on the selected category
+    if (selectedCategory !== 'all') {
+      navigate(`/${selectedCategory.toLowerCase()}`);
+    } else {
+      navigate('/'); // Or handle the 'all' option as needed
+    }
+  };
   return (
     <div className=" text-white p-1 relative" style={{ backgroundColor: "#131921" }}>
       <div className="flex items-center justify-between max-w-7xl mx-auto px-4">
@@ -78,7 +108,7 @@ function Nav() {
         </div>
 
         <div className="flex flex-1 mx-4 items-center bg-gray-700 rounded-md overflow-hidden lg:ml-6">
-          <select className="p-2 flex-shrink-0 border-none bg-gray-700 text-white focus:outline-none h-full w-14">
+          <select onChange={handleCategoryChange}  className="p-2 flex-shrink-0 border-none bg-gray-700 text-white focus:outline-none h-full w-14">
             <option value="all">All</option>
             {categoryList.map((category) => (
               <option key={category.id} value={category.name}>
@@ -182,31 +212,36 @@ function Nav() {
         </div>
       )}
 
-      {isAccountMenuOpen && (
-        <div className="absolute top-16 right-4 bg-gray-700 p-4 rounded-md shadow-lg z-10">
-          <div className="text-lg font-bold mb-2"> <Link to="/login" className="text-yellow-500 hover:underline">Sign in</Link></div>
-          <div className="text-sm mb-4">New customer? <Link to="/signup" className="text-yellow-500 hover:underline">Start here.</Link></div>
+{isAccountMenuOpen && (
+        <div ref={accountMenuRef} className="absolute top-16 right-4 bg-gray-700 p-4 rounded-md shadow-lg z-10">
+          <div className="text-lg font-bold mb-2">
+            <Link to="/login" className="text-yellow-500 hover:underline" onClick={handleLinkClick}>Sign in</Link>
+          </div>
+          <div className="text-sm mb-4">
+            New customer? <Link to="/signup" className="text-yellow-500 hover:underline" onClick={handleLinkClick}>Start here.</Link>
+          </div>
           <div className="flex flex-col space-y-2">
-            <Link to="/lists" className="hover:underline">Your Lists</Link>
-            <Link to="/wishlist" className="hover:underline">Create a Wish List</Link>
-            <Link to="/wish-any-website" className="hover:underline">Wish from Any Website</Link>
-            <Link to="/baby-wishlist" className="hover:underline">Baby Wishlist</Link>
-            <Link to="/style" className="hover:underline">Discover Your Style</Link>
-            <Link to="/showroom" className="hover:underline">Explore Showroom</Link>
-            <Link to="/account" className="hover:underline">Your Account</Link>
-            <Link to="/orders" className="hover:underline">Your Orders</Link>
-            <Link to="/wish-list" className="hover:underline">Your Wish List</Link>
-            <Link to="/recommendations" className="hover:underline">Your Recommendations</Link>
-            <Link to="/prime-membership" className="hover:underline">Your Prime Membership</Link>
-            <Link to="/prime-video" className="hover:underline">Your Prime Video</Link>
-            <Link to="/subscribe-save" className="hover:underline">Your Subscribe & Save Items</Link>
-            <Link to="/memberships-subscriptions" className="hover:underline">Memberships & Subscriptions</Link>
-            <Link to="/seller-account" className="hover:underline">Your Seller Account</Link>
-            <Link to="/content-devices" className="hover:underline">Manage Your Content and Devices</Link>
-            <Link to="/amazon-business-account" className="hover:underline">Your Free Amazon Business Account</Link>
+            <Link to="/lists" className="hover:underline" onClick={handleLinkClick}>Your Lists</Link>
+            <Link to="/wishlist" className="hover:underline" onClick={handleLinkClick}>Create a Wish List</Link>
+            <Link to="/wish-any-website" className="hover:underline" onClick={handleLinkClick}>Wish from Any Website</Link>
+            <Link to="/baby-wishlist" className="hover:underline" onClick={handleLinkClick}>Baby Wishlist</Link>
+            <Link to="/style" className="hover:underline" onClick={handleLinkClick}>Discover Your Style</Link>
+            <Link to="/showroom" className="hover:underline" onClick={handleLinkClick}>Explore Showroom</Link>
+            <Link to="/account" className="hover:underline" onClick={handleLinkClick}>Your Account</Link>
+            <Link to="/myorders" className="hover:underline" onClick={handleLinkClick}>Your Orders</Link>
+            <Link to="/wish-list" className="hover:underline" onClick={handleLinkClick}>Your Wish List</Link>
+            <Link to="/recommendations" className="hover:underline" onClick={handleLinkClick}>Your Recommendations</Link>
+            <Link to="/prime-membership" className="hover:underline" onClick={handleLinkClick}>Your Prime Membership</Link>
+            <Link to="/prime-video" className="hover:underline" onClick={handleLinkClick}>Your Prime Video</Link>
+            <Link to="/subscribe-save" className="hover:underline" onClick={handleLinkClick}>Your Subscribe & Save Items</Link>
+            <Link to="/memberships-subscriptions" className="hover:underline" onClick={handleLinkClick}>Memberships & Subscriptions</Link>
+            <Link to="/seller-account" className="hover:underline" onClick={handleLinkClick}>Your Seller Account</Link>
+            <Link to="/content-devices" className="hover:underline" onClick={handleLinkClick}>Manage Your Content and Devices</Link>
+            <Link to="/amazon-business-account" className="hover:underline" onClick={handleLinkClick}>Your Free Amazon Business Account</Link>
           </div>
         </div>
       )}
+
 
       {isMobileMenuOpen && (
         <div className="absolute top-16 left-0 w-full bg-gray-700 p-4 rounded-md shadow-lg z-50">

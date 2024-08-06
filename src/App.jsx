@@ -10,6 +10,7 @@ import Footer from './Components/Footer/Footer';
 import Cart from './Components/AllPages/Cart/Cart';
 import MyOrder from './Components/AllPages/MyOrders/MyOrder';
 import Appliances from './Components/AllPages/Appliances/Appliances';
+import Recom from './Components/Recommendations/Recommendations';
 
 
 
@@ -51,6 +52,7 @@ const onDeleteItem = (itemId) => {
           />}
         />
         <Route path="/myorders" element={<MyOrder />} />
+        <Route path="/recommendations" element={<Recom />} />
 
       </Routes>
       {showHeaderFooter && <Footer />}
