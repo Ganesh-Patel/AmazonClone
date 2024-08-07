@@ -21,14 +21,14 @@ function Appliances() {
     const { deal_id, deal_title, deal_price, deal_photo } = item;
     const newItem = {
       id: deal_id,
-      name: deal_title, 
+      name: deal_title,
       price: parseInt(deal_price.amount),
       quantity: 1,
       image: deal_photo,
     };
     if (status === 'succeeded') {
-    setCartItems((prevItems) => [...prevItems, newItem]);
-    toast('Item added to cart!');
+      setCartItems((prevItems) => [...prevItems, newItem]);
+      toast('Item added to cart!');
     } else {
       toast.error('Please login to add items to cart!');
       navigate('/login');

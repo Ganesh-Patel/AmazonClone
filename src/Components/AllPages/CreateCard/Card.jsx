@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Card.module.css';
-import { truncateText } from '../../Utils/truncateText'; 
-import { useNavigate} from 'react-router-dom';
+import { truncateText } from '../../Utils/truncateText';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 // Function to convert currency to INR
@@ -20,7 +20,6 @@ const convertToINR = async (amount, currency) => {
   }
 };
 
-
 function Card({
   imageUrl,
   title,
@@ -37,21 +36,22 @@ function Card({
   const [priceInINR, setPriceInINR] = useState(price);
   const [originalPriceInINR, setOriginalPriceInINR] = useState(originalPrice);
   const [savingsInINR, setSavingsInINR] = useState(savings?.amount);
-  
+
   const navigate = useNavigate();
 
-function viewDetails(linkUrl){
-  console.log("View Details"+linkUrl);
-  navigate(`/details/${linkUrl}`);
-}
+  function viewDetails(linkUrl) {
+    console.log("View Details" + linkUrl);
+    navigate(`/details/${linkUrl}`);
+  }
+
   useEffect(() => {
     const fetchPricesInINR = async () => {
       if (currency !== 'INR') {
-        const priceConverted = await convertToINR(parseFloat(price), currency);
+        const priceConverted = await convertToINR(price, currency);
         setPriceInINR(priceConverted.toFixed(2));
 
         if (originalPrice) {
-          const originalPriceConverted = await convertToINR(parseFloat(originalPrice), currency);
+          const originalPriceConverted = await convertToINR(originalPrice, currency);
           setOriginalPriceInINR(originalPriceConverted.toFixed(2));
         }
 
@@ -78,13 +78,11 @@ function viewDetails(linkUrl){
           ₹{priceInINR} {originalPriceInINR && <span className={styles.originalPrice}>₹{originalPriceInINR}</span>}
         </p>
         {savingsInINR && (
-          <p className={styles.savings}>You Save: ₹{savingsInINR} ({savings.percentage}%)</p>
+          <p className={styles.savings}>You Save: ₹{savingsInINR} ({savings?.percentage}%)</p>
         )}
         {additionalInfo && <p className={styles.additionalInfo}>{additionalInfo}</p>}
         {linkUrl && (
-          <button onClick={()=>{
-            viewDetails(linkUrl)
-          }}  className={styles.link}>
+          <button onClick={() => viewDetails(linkUrl)} className={styles.link}>
             View More
           </button>
         )}
@@ -99,12 +97,12 @@ function viewDetails(linkUrl){
 Card.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,  // Updated to number
   currency: PropTypes.string, // Currency code like 'USD', 'EUR', etc.
-  originalPrice: PropTypes.string,
+  originalPrice: PropTypes.string,  // Updated to number
   savings: PropTypes.shape({
-    amount: PropTypes.string,
-    percentage: PropTypes.string
+    amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // Updated to accept string or number
+    percentage: PropTypes.string,
   }),
   linkUrl: PropTypes.string,
   onActionClick: PropTypes.func.isRequired,

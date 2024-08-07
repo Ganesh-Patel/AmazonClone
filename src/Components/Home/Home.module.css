@@ -19,7 +19,7 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
   position: relative;
-  top: -40%; 
+  top: -40%;
   transform: translateY(-40%);
   z-index: 1;
 }
@@ -45,30 +45,33 @@
 
 @media screen and (max-width: 700px) {
   .home {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      /* Remove the red background color */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* Remove the red background color */
   }
-  
+
   .cardsContainer {
-      top: -3%; /* Reset the top position */
-      transform: translateY(-3%); /* Reset the transform */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
+    top: -3%;
+    /* Reset the top position */
+    transform: translateY(-3%);
+    /* Reset the transform */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
   }
 
   .flightadvertisement {
-      margin-top: 20px;
-      padding: 2%;
+    margin-top: 20px;
+    padding: 2%;
   }
-  
+
   .carouselContainer {
-      width: 100vw;
-      margin-bottom: 20px; /* Ensure spacing between carousel and cards */
+    width: 100vw;
+    margin-bottom: 20px;
+    /* Ensure spacing between carousel and cards */
   }
 }

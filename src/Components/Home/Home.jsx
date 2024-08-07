@@ -59,8 +59,8 @@ function Home() {
           </div>
         ))}
       </div>
-        {/* <Carouseltiming /> */}
-        
+      {/* <Carouseltiming /> */}
+
       <div className={styles.mobileContainer}>
         <Mobile />
       </div>
