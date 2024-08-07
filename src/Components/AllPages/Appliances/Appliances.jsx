@@ -6,26 +6,33 @@ import FilterSidebar from './../../Filters/Sidebarfilter/FilterSidebar'; // Impo
 import styles from './Appliances.module.css';
 import { toast } from 'react-toastify';
 import { SearchContext } from '../../myContexts/SearchContext'; // Import the SearchContext
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Appliances() {
   const { setCartItems } = useGlobalState();
   const { searchTerm } = useContext(SearchContext); // Use the SearchContext
   const [filteredData, setFilteredData] = useState(deals[0]?.data?.deals || []);
   const [allDeals, setAllDeals] = useState(deals[0]?.data?.deals || []); // Store all deals for resetting filters
-
+  const { user, status } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   // Handle adding item to cart
   const handleAddToCart = (item) => {
     const { deal_id, deal_title, deal_price, deal_photo } = item;
     const newItem = {
       id: deal_id,
-      name: deal_title.split(' ')[0], // You can customize the name extraction as needed
+      name: deal_title, 
       price: parseInt(deal_price.amount),
       quantity: 1,
       image: deal_photo,
     };
-
+    if (status === 'succeeded') {
     setCartItems((prevItems) => [...prevItems, newItem]);
     toast('Item added to cart!');
+    } else {
+      toast.error('Please login to add items to cart!');
+      navigate('/login');
+    }
   };
 
   // Apply filters to data
@@ -86,7 +93,7 @@ function Appliances() {
                 price={deal.deal_price.amount}
                 originalPrice={deal.list_price.amount}
                 savings={{ amount: deal.savings_amount.amount, percentage: deal.savings_percentage }}
-                linkUrl={deal.deal_url}
+                linkUrl={deal.deal_id}
                 onActionClick={() => handleAddToCart(deal)}
                 actionLabel="Add to Cart"
               />

@@ -8,11 +8,13 @@ import saleindia from '../../../assets/saleind.png';
 import LeftSidebar from '../LeftSidebar/LeftSidebar';
 import style from './Nav.module.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCategoryList } from '../../../Redux/Slices/categorySlice'; 
+import { fetchCategoryList } from '../../../Redux/Slices/categorySlice';
 import { useSearch } from '../../Filters/useSearch';
 import { SearchContext } from '../../myContexts/SearchContext';
+import { useGlobalState } from '../../myContexts/GlobalStateContext';
 
 function Nav() {
+  const { cartItems } = useGlobalState();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
@@ -39,7 +41,7 @@ function Nav() {
 
   const { data: categoryList, loading, error } = useSelector((state) => state.category);
 
-  
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -120,7 +122,7 @@ function Nav() {
         </div>
 
         <div className="flex flex-1 mx-4 items-center bg-gray-700 rounded-md overflow-hidden lg:ml-6">
-          <select onChange={handleCategoryChange}  className="p-2 flex-shrink-0 border-none bg-gray-700 text-white focus:outline-none h-full w-14">
+          <select onChange={handleCategoryChange} className="p-2 flex-shrink-0 border-none bg-gray-700 text-white focus:outline-none h-full w-14">
             <option value="all">All</option>
             {categoryList.map((category) => (
               <option key={category.id} value={category.name}>
@@ -157,19 +159,25 @@ function Nav() {
             </div>
           </div>
           <Link to="/myorders" className="flex items-center space-x-1 cursor-pointer group">
-          <div className="flex flex-col items-start cursor-pointer group">
-            <div className="flex flex-col items-start border border-transparent p-2 group-hover:border-white">
-              <span className="text-xs">Returns</span>
-              <span className="font-bold">& Orders</span>
-            </div>
-          </div>
-          </Link>
-          <Link to="/cart" className="flex items-center space-x-1 cursor-pointer group">
-            <div className="flex gap-3 items-center border border-transparent p-2 group-hover:border-white">
-              <FaShoppingCart className="text-2xl" />
-              <span className="font-bold">Cart</span>
+            <div className="flex flex-col items-start cursor-pointer group">
+              <div className="flex flex-col items-start border border-transparent p-2 group-hover:border-white">
+                <span className="text-xs">Returns</span>
+                <span className="font-bold">& Orders</span>
+              </div>
             </div>
           </Link>
+          <Link to="/cart" className="flex items-center space-x-2 cursor-pointer group relative">
+            <div className="flex items-center border border-transparent p-2 group-hover:border-white relative">
+              <FaShoppingCart className="text-2xl relative" />
+              {cartItems.length > 0 && (
+                <span className="absolute -top-1 -right-1 text-xs font-semibold px-1 py-0.5 bg-[#f4a857] text-amazon_blue rounded-full flex justify-center items-center">
+                  {cartItems.length}
+                </span>
+              )}
+            </div>
+            <p>Cart</p>
+          </Link>
+
         </div>
 
         <button
@@ -225,7 +233,7 @@ function Nav() {
         </div>
       )}
 
-{isAccountMenuOpen && (
+      {isAccountMenuOpen && (
         <div ref={accountMenuRef} className="absolute top-16 right-4 bg-gray-700 p-4 rounded-md shadow-lg z-10">
           <div className="text-lg font-bold mb-2">
             <Link to="/login" className="text-yellow-500 hover:underline" onClick={handleLinkClick}>Sign in</Link>
@@ -261,7 +269,7 @@ function Nav() {
           {/* Mobile menu content here */}
         </div>
       )}
-      <div style={{width:"100%", backgroundColor:"#242F3E"}} className="left-0 w-full text-white py-1 Nav2">
+      <div id={style.Nav2} style={{ width: "100%", backgroundColor: "#242F3E" }} className="left-0 w-full text-white py-1 Nav2 ">
         <div className="flex items-center justify-between max-w-full px-2">
           {/* Hamburger Icon */}
           <button onClick={toggleSidebar} className="text-white">

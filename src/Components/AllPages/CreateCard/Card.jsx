@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Card.module.css';
 import { truncateText } from '../../Utils/truncateText'; 
+import { useNavigate} from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 // Function to convert currency to INR
 const convertToINR = async (amount, currency) => {
@@ -17,6 +19,7 @@ const convertToINR = async (amount, currency) => {
     return amount; // Fallback to returning the original amount if an error occurs
   }
 };
+
 
 function Card({
   imageUrl,
@@ -34,7 +37,13 @@ function Card({
   const [priceInINR, setPriceInINR] = useState(price);
   const [originalPriceInINR, setOriginalPriceInINR] = useState(originalPrice);
   const [savingsInINR, setSavingsInINR] = useState(savings?.amount);
+  
+  const navigate = useNavigate();
 
+function viewDetails(linkUrl){
+  console.log("View Details"+linkUrl);
+  navigate(`/details/${linkUrl}`);
+}
   useEffect(() => {
     const fetchPricesInINR = async () => {
       if (currency !== 'INR') {
@@ -73,9 +82,11 @@ function Card({
         )}
         {additionalInfo && <p className={styles.additionalInfo}>{additionalInfo}</p>}
         {linkUrl && (
-          <a href={linkUrl} target="_blank" rel="noopener noreferrer" className={styles.link}>
+          <button onClick={()=>{
+            viewDetails(linkUrl)
+          }}  className={styles.link}>
             View More
-          </a>
+          </button>
         )}
         <button className={styles.actionButton} onClick={onActionClick}>
           {actionLabel}

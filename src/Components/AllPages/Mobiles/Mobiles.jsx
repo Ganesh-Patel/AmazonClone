@@ -6,9 +6,13 @@ import FilterSidebar from './../../Filters/Sidebarfilter/FilterSidebar'; // Impo
 import style from './Mobiles.module.css';
 import { toast } from 'react-toastify';
 import { SearchContext } from '../../myContexts/SearchContext';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 function Mobiles() {
   const [filteredData, setFilteredData] = useState(data.data.products);
   const { setCartItems } = useGlobalState();
+  const { user, status } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const convertToINR = (amountInUSD) => {
     const conversionRate = 82; 
@@ -16,6 +20,7 @@ function Mobiles() {
   };
   
   const handleAddToCart = (item) => {
+    if(status === 'succeeded'){
     const price = parseFloat(item.product_price?.replace(/[^0-9.-]+/g, '') || '0');
     const originalPrice = parseFloat(item.product_original_price?.replace(/[^0-9.-]+/g, '') || '0');
 
@@ -32,6 +37,11 @@ function Mobiles() {
 
     setCartItems((prevItems) => [...prevItems, newItem]);
     toast('Item added to cart!');
+}
+    else{
+        toast.error('Please login to add items to cart');
+        navigate('/login');
+    }
   };
 
   const handleFilterChange = (filters) => {
@@ -86,7 +96,7 @@ function Mobiles() {
             currency={product.currency}
             originalPrice={parseFloat(product.product_original_price?.replace(/[^0-9.-]+/g, '') || '0')}
             savings={'500'}  
-            linkUrl={product.product_url}
+            linkUrl={product.asin}
             onActionClick={() => handleAddToCart(product)}
             actionLabel="Add to Cart"
             ratings={{ stars: product.product_star_rating, numRatings: product.product_num_ratings }}

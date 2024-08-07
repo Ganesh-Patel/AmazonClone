@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './HomeCard.module.css';
 
-function HomeCard({ title, items }) {
+function HomeCard({ title, items, category }) {
   return (
     <div className={styles.cardContainer}>
     <div className={styles.card}>
@@ -15,7 +15,7 @@ function HomeCard({ title, items }) {
         ))}
       </div>
       <div className={styles.exploreMore}>
-        <a href="#" className={styles.exploreMoreLink}>
+        <a href={`/${category}`} className={styles.exploreMoreLink}>
           Explore More
         </a>
       </div>

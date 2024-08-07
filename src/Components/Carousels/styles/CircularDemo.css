@@ -1,0 +1,25 @@
+.custom-carousel .p-carousel-item {
+    padding: 0; /* Remove padding around carousel items */
+}
+
+.carousel-item {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+}
+
+.custom-carousel .p-carousel-content {
+    display: flex;
+}
+
+.custom-carousel .p-carousel-content .p-carousel-item {
+    flex: 1 0 33.333%; /* Ensure each item takes up one-third of the width */
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.custom-carousel .p-carousel-item img {
+    width: 100%; /* Ensure image takes up full width of the item */
+    height: auto;
+    object-fit: cover; /* Ensure images fit nicely */
+}

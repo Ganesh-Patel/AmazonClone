@@ -12,6 +12,8 @@ import MyOrder from './Components/AllPages/MyOrders/MyOrder';
 import Appliances from './Components/AllPages/Appliances/Appliances';
 import Recom from './Components/Recommendations/Recommendations';
 import Mobiles from './Components/AllPages/Mobiles/Mobiles';
+import Details from './Components/AllPages/DetailsPage/Details';
+import ProtectedRoute from './Routes/ProtectedRoute';
 
 
 
@@ -44,16 +46,27 @@ const onDeleteItem = (itemId) => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/" element={<Home />} />
-        <Route path="/appliances" element={<Appliances />} />
-        <Route path='/cell-phones-&-accessories' element={<Mobiles />} />
-        <Route
-          path="/cart"
-          element={<Cart
-            onUpdateItemQuantity={onUpdateItemQuantity}
-            onDeleteItem={onDeleteItem}
-          />}
-        />
-        <Route path="/myorders" element={<MyOrder />} />
+        <Route element={<ProtectedRoute />}>
+            <Route path="/appliances" element={<Appliances />} />
+            <Route path="/home/appliances" element={<Appliances />} />
+            <Route path="/home/electronics" element={<Appliances />} />
+            <Route path="/electronics" element={<Appliances />} />
+            <Route path="/home/automobiles" element={<Appliances />} />
+            <Route path="/automobiles" element={<Appliances />} />
+            <Route path="/home/homestyles" element={<Appliances />} />
+            <Route path="/homestyles" element={<Appliances />} />
+            <Route path='/cell-phones-&-accessories' element={<Mobiles />} />
+            <Route path='/home/cell-phones-&-accessories' element={<Mobiles />} />
+            <Route path="/details/:id" element={<Details />} />
+            <Route
+              path="/cart"
+              element={<Cart
+                onUpdateItemQuantity={onUpdateItemQuantity}
+                onDeleteItem={onDeleteItem}
+              />}
+            />
+            <Route path="/myorders" element={<MyOrder />} />
+        </Route>
         <Route path="/recommendations" element={<Recom />} />
 
       </Routes>

@@ -1,0 +1,117 @@
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carouselInner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300%; /* Adjust this if the number of items visible changes */
+}
+
+.carouselItem {
+    flex: 1 0 33.3333%; /* 33.3333% for showing 3 items */
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 100%; /* Ensure full width */
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.details {
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.instock {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.lowstock {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.outofstock {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+.button {
+    margin: 0 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+@media (max-width: 1400px) {
+    .carouselInner {
+        width: 200%; /* Adjust width to fit 2 items */
+    }
+
+    .carouselItem {
+        flex: 1 0 50%; 
+    }
+}
+
+@media (max-width: 767px) {
+    .carouselInner {
+        width: 100%; 
+    }
+
+    .carouselItem {
+        flex: 1 0 100%; 
+    }
+}

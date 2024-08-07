@@ -89,3 +89,15 @@
 .actionButton:hover {
   background-color: #f90;
 }
+@media screen and (max-width: 768px) {
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 200px; /* Adjust width as needed */
+    height: 700px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    margin-right: 10px; 
+  }
+}

@@ -1,6 +1,9 @@
+import categories from "../AllData/Categories";
+
  export const productData = [
     {
       title: "Starting ₹149 | Headphones",
+      category:"Electronics",
       items: [
         {
           img: "https://images-eu.ssl-images-amazon.com/images/G/31/img21/june/CE/GW/QC/PC/PC_QuadCard_boAt._SY232_CB553870684_.jpg",
@@ -29,6 +32,7 @@
       ]
     },{
       title: "Revamp your home in style",
+      category:"Homestyles",
       items: [
         {
           img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG20/Home/2024/Gateway/BTFGW/PCQC/New/2x/372x232_Home_furnishings_2._SY232_CB555629502_.jpg",
@@ -57,6 +61,7 @@
       ]
     },{
       title: "Appliances for your home | Up to 55% off",
+      category:"Appliances",
       items: [
         {
           img: "https://images-eu.ssl-images-amazon.com/images/G/31/IMG15/Irfan/GATEWAY/MSO/Appliances-QC-PC-372x232----B08RDL6H79._SY232_CB667322346_.jpg",
@@ -85,6 +90,7 @@
       ]
     },{
       title: "Automotive essentials | Up to 60% off",
+      category:"Automobiles",
       items: [
         {
           img: "https://5.imimg.com/data5/SELLER/Default/2022/9/KG/ZH/TG/150541950/luxury-car-accessories.jpeg",
@@ -111,6 +117,7 @@
           brand: "Zebronics"
         }
       ]
-    }
+    },
+    
     
   ];

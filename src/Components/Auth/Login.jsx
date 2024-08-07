@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../Redux/Slices/authSlice';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 
 function Login() {
@@ -11,11 +11,19 @@ function Login() {
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
   const authError = useSelector((state) => state.auth.error);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(email, password, navigate));
+    dispatch(login(email, password, navigate, from));
   };
+
+  useEffect(() => {
+    if (authStatus === 'succeeded') {
+      navigate(from, { replace: true });
+    }
+  }, [authStatus, navigate, from]);
 
   return (
     <div className={styles.authContainer}>

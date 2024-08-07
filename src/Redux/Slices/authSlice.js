@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import auth from '../../../firebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
+
 const initialState = {
   user: null,
   status: 'idle',
@@ -24,7 +25,7 @@ const authSlice = createSlice({
   },
 });
 
-export const login = (email, password, navigate) => async (dispatch) => {
+export const login = (email, password, navigate, from) => async (dispatch) => {
   try {
     dispatch(setStatus('loading'));
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -35,11 +36,11 @@ export const login = (email, password, navigate) => async (dispatch) => {
     }));
     dispatch(setStatus('succeeded'));
     toast.success('Login successful'); // Show success toast
-    navigate('/home');
+    navigate(from, { replace: true });
   } catch (error) {
     dispatch(setError(error.message));
     dispatch(setStatus('failed'));
-    toast.error(`Login failed: ${error.message}`); 
+    toast.error(`Login failed: ${error.message}`);
   }
 };
 
@@ -54,12 +55,12 @@ export const signup = (email, password, navigate) => async (dispatch) => {
       displayName: user.displayName,
     }));
     dispatch(setStatus('succeeded'));
-    toast.success('Signup successful'); 
+    toast.success('Signup successful');
     navigate('/login');
   } catch (error) {
     dispatch(setError(error.message));
     dispatch(setStatus('failed'));
-    toast.error(`Signup failed: ${error.message}`); 
+    toast.error(`Signup failed: ${error.message}`);
   }
 };
 
@@ -67,10 +68,10 @@ export const logout = () => async (dispatch) => {
   try {
     await signOut(auth);
     dispatch(setUser(null));
-    toast.info('Logged out successfully'); 
+    toast.info('Logged out successfully');
   } catch (error) {
     dispatch(setError(error.message));
-    toast.error(`Logout failed: ${error.message}`); 
+    toast.error(`Logout failed: ${error.message}`);
   }
 };
 

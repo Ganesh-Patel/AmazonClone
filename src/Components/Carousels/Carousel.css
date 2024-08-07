@@ -52,4 +52,14 @@
   .carousel-button.next {
     right: 10px;
   }
+
+
+  @media screen and (max-width: 700px) {
+
+    .carousel-button {
+      font-size: 2rem;
+     
+    }
+    
+  }
   

@@ -1,12 +1,42 @@
 import React from 'react';
 import { useGlobalState } from '../../myContexts/GlobalStateContext'; // Adjust the import path
 import style from './MyOrder.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function MyOrder() {
   const { orders } = useGlobalState();
+  const navigate = useNavigate();
 
   if (orders.length === 0) {
-    return <div className={style.noOrdersMessage}>No order details found.</div>;
+    return (
+    <div className={style.emptyCart}>
+    <img
+      src="https://m.media-amazon.com/images/G/31/cart/empty/kettle-desaturated._CB424694257_.svg"
+      alt="Empty cart"
+      className={style.emptyCartImage}
+    />
+    <div className={style.emptyCartText}>
+      <h1 className={style.emptyCartTitle}>No Order found </h1>
+      <div className={style.shopDeals} onClick={() => navigate('/home')}>
+        <p>Shop today's deals</p>
+      </div>
+      <div className={style.buttons}>
+        <button
+          className={style.signInButton}
+          onClick={() => navigate('/login')}
+        >
+          Sign into your account
+        </button>
+        <button
+          className={style.signUpButton}
+          onClick={() => navigate('/signup')}
+        >
+          Sign Up Now
+        </button>
+      </div>
+    </div>
+  </div>
+    )
   }
 
   return (

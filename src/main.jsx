@@ -9,11 +9,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GlobalStateProvider } from './Components/myContexts/GlobalStateContext';
 import { SearchProvider } from './Components/myContexts/SearchContext';
+import { PrimeReactProvider } from 'primereact/api';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <React.StrictMode>
+     <PrimeReactProvider>
     <SearchProvider>
       <GlobalStateProvider>
         <Provider store={store}>
@@ -24,5 +26,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </Provider>
       </GlobalStateProvider>
     </SearchProvider>
+    </PrimeReactProvider>
   </React.StrictMode>,
 )
