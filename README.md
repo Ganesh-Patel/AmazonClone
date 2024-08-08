@@ -24,8 +24,7 @@ Welcome to the E-Commerce Platform, a fully functional Amazon Clone project deve
 [Visit the Live Site](https://amazon-clone-ashen-phi.vercel.app/) 
 
 ### Images
-![Landing Page](<img width="1280" alt="Screenshot 2024-08-09 at 12 34 24 AM" src="https://github.com/user-attachments/assets/96ea911b-c127-4722-a3e6-e6b7571d96f9">
-)
+![Landing Page](https://github.com/user-attachments/assets/96ea911b-c127-4722-a3e6-e6b7571d96f9")
 ![Product Listings](<img width="1278" alt="Screenshot 2024-08-09 at 12 35 05 AM" src="https://github.com/user-attachments/assets/1a002a13-cb74-44e5-be46-6465942d2851">
 )
 ![Cart Summary](<img width="1276" alt="Screenshot 2024-08-09 at 12 40 59 AM" src="https://github.com/user-attachments/assets/223b7053-7a25-4a73-b27a-0dbcda362804">
