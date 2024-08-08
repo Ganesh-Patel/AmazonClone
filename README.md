@@ -20,8 +20,8 @@ Welcome to the E-Commerce Platform, a fully functional Amazon Clone project deve
 ### Demo Video
 [Watch the Demo Video](#) 
 
-### Hosted Link
-[Visit the Live Site](https://amazon-clone-ashen-phi.vercel.app/) 
+## Live Demo
+[Live Demo](https://amazon-clone-ashen-phi.vercel.app/)
 
 ### Images
 ## Landing Page
