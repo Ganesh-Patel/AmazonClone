@@ -33,6 +33,9 @@ Welcome to the E-Commerce Platform, a fully functional Amazon Clone project deve
 ## Cart Summary
 ![Cart Summary](https://github.com/user-attachments/assets/223b7053-7a25-4a73-b27a-0dbcda362804) 
 
+## Order Summary
+![Order Details](https://github.com/user-attachments/assets/45b3eb2d-0f71-4c49-bf50-a0c0e4d9b230)
+
 ## API Integration
 
 - **Amazon Product Data API**: Used for fetching real-time product data.
