@@ -15,17 +15,20 @@ import { PrimeReactProvider } from 'primereact/api';
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <React.StrictMode>
-     <PrimeReactProvider>
-    <SearchProvider>
-      <GlobalStateProvider>
-        <Provider store={store}>
-          <BrowserRouter>
-            <ToastContainer />
-            <App />
-          </BrowserRouter>
-        </Provider>
-      </GlobalStateProvider>
-    </SearchProvider>
+    <PrimeReactProvider>
+      <SearchProvider>
+        <GlobalStateProvider>
+          <Provider store={store}>
+            <BrowserRouter>
+              <ToastContainer
+                position="bottom-right" 
+                autoClose={2000} 
+              />
+              <App />
+            </BrowserRouter>
+          </Provider>
+        </GlobalStateProvider>
+      </SearchProvider>
     </PrimeReactProvider>
   </React.StrictMode>,
 )

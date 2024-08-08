@@ -14,6 +14,7 @@ import Recom from './Components/Recommendations/Recommendations';
 import Mobiles from './Components/AllPages/Mobiles/Mobiles';
 import Details from './Components/AllPages/DetailsPage/Details';
 import ProtectedRoute from './Routes/ProtectedRoute';
+import ProductDetails from './Components/AllPages/Products/ProductDetails/ProductDetails';
 
 
 function App() {
@@ -57,6 +58,9 @@ function App() {
           <Route path='/cell-phones-&-accessories' element={<Mobiles />} />
           <Route path='/home/cell-phones-&-accessories' element={<Mobiles />} />
           <Route path="/details/:id" element={<Details />} />
+
+        
+
           <Route
             path="/cart"
             element={<Cart
@@ -71,6 +75,8 @@ function App() {
         <Route path='/home/mobiles' element={<Mobiles />} />
         <Route path='/mobiles' element={<Mobiles />} />
         <Route path="/recommendations" element={<Recom />} />
+        <Route path="/home/product/:id" element={<ProductDetails />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
 
       </Routes>
       {showHeaderFooter && <Footer />}

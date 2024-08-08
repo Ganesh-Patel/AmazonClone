@@ -8,6 +8,7 @@ import { productData2 } from './Data2.js';
 import HomeCard from './HomeCards/HomeCard.jsx';
 import styles from './Home.module.css';
 import Mobile from '../ProductLsit/Mobile/Mobile.jsx';
+import Products from '../../Components/AllPages/Products/Products.jsx';
 // import ReactMultiCarausel from '../Carousels/Demo/ReactMultiCarausel.jsx';
 
 function Home() {
@@ -60,6 +61,11 @@ function Home() {
         ))}
       </div>
       {/* <Carouseltiming /> */}
+
+      <div className={styles.productContainer}>
+
+        <Products />
+      </div>
 
       <div className={styles.mobileContainer}>
         <Mobile />
