@@ -11,8 +11,8 @@ const Mobile = () => {
   }, [dispatch]);
 
   if (status === 'loading') return <p>Loading...</p>;
-  if (status === 'failed') return <p>Error: {error || 'An unknown error occurred'}</p>;
-
+  // if (status === 'failed') return <p>Error: {error || 'An unknown error occurred'}</p>;
+  if (status === 'failed') return   <p>No other data available for now </p>;
   return (
     <div>
       {data && data.products && data.products.length > 0 ? (

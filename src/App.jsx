@@ -16,8 +16,6 @@ import Details from './Components/AllPages/DetailsPage/Details';
 import ProtectedRoute from './Routes/ProtectedRoute';
 
 
-
-
 function App() {
   const { setCartItems } = useGlobalState();
 

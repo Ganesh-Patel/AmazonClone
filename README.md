@@ -49,7 +49,7 @@ Welcome to the E-Commerce Platform, a fully functional Amazon Clone project deve
 
 ## Technologies Used
 
-- **Frontend:** React, Redux, Context API, useState, useRef, useEffect, CSS Modules
+- **Frontend:** React,React Router, Redux, Context API, useState, useRef, useEffect,Tailwind Css ,CSS Modules etc.
 - **Backend & Authentication:** Firebase
 - **Payment Gateway:** Razorpay
 - **State Management:** Redux
