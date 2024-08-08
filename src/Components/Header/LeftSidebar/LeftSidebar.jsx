@@ -12,7 +12,7 @@ const LeftSidebar = ({ isOpen, onClose }) => {
       } transition-transform duration-300 ease-in-out`}
       style={{ width: '30vw' }}
     >
-      <div className="flex justify-between items-center p-4 bg-black">
+      <div className="hidden md:flex   justify-between items-center p-4 bg-black">
         <h2 className="text-xl font-bold">Hello,{status === 'succeeded' && user ? user.displayName || user.email : 'Sign In'} </h2>
         <button onClick={onClose}>
           <FaTimes />

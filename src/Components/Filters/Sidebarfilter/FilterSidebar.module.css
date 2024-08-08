@@ -5,7 +5,21 @@
     border-radius: 8px;
     background-color: #fff;
   }
+  .clearAllButton {
+    background-color: #ffa41c; /* Blue background color */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 5px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px; /* Space below the button */
+    width: 100%; /* Full width of the sidebar */
+  }
   
+  .clearAllButton:hover {
+    background-color: #d4840d; /* Darker blue on hover */
+  }
   .filterSection {
     margin-bottom: 20px;
   }
@@ -26,3 +40,12 @@
     margin-right: 10px;
   }
   
+
+  input[type="radio"] {
+    margin-right: 8px;
+  }
+  
+  input[type="radio"]:checked + label {
+    color: blue;
+    font-weight: bold; 
+  }

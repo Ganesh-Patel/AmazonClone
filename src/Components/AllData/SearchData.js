@@ -30,7 +30,9 @@ const data = {
           climate_pledge_friendly: false,
           sales_volume: "5K+ bought in past month",
           delivery: "FREE delivery Sat, Aug 10 Or fastest delivery Thu, Aug 8",
-          has_variations: true
+          has_variations: true,
+          brand: "Moto",
+          category: "mobile",
         },
         {
           asin: "B0CHH6X6H2",
@@ -50,7 +52,9 @@ const data = {
           climate_pledge_friendly: false,
           sales_volume: "2K+ bought in past month",
           delivery: "FREE delivery Sat, Aug 10 Or fastest delivery Thu, Aug 8",
-          has_variations: false
+          has_variations: false,
+          brand: "Samsung",
+          category: "mobile",
         },
         {
           asin: "B0CN1QSH8Q",
@@ -70,7 +74,9 @@ const data = {
           climate_pledge_friendly: true,
           sales_volume: "3K+ bought in past month",
           delivery: "FREE delivery Sat, Aug 10 Or fastest delivery Thu, Aug 8",
-          has_variations: true
+          has_variations: true,
+          brand: "Samsung",
+          category: "mobile",
         },
         {
           asin: "B0BZ9XNBRB",
@@ -90,7 +96,9 @@ const data = {
           climate_pledge_friendly: false,
           sales_volume: "10K+ bought in past month",
           delivery: "FREE delivery Thu, Aug 8",
-          has_variations: true
+          has_variations: true,
+          brand: "Google",
+          category: "mobile",
         },
         {
           asin: "B0CSB22F9C",
@@ -110,7 +118,9 @@ const data = {
           climate_pledge_friendly: false,
           sales_volume: "4K+ bought in past month",
           delivery: "FREE delivery Sat, Aug 10 Or fastest delivery Thu, Aug 8",
-          has_variations: false
+          has_variations: false,
+          brand: "Samsung",
+          category: "mobile",
         },
         {
           asin: "B0CHH1N9VY",
@@ -130,7 +140,9 @@ const data = {
           climate_pledge_friendly: false,
           sales_volume: "500+ bought in past month",
           delivery: "FREE delivery Sat, Aug 10 Or fastest delivery Thu, Aug 8",
-          has_variations: false
+          has_variations: false,
+          brand: "TracFone",
+          category: "mobile",
         },
         {
           asin: "B088NQXD8T",
@@ -151,7 +163,9 @@ const data = {
           climate_pledge_friendly: true,
           sales_volume: "2K+ bought in past month",
           delivery: "FREE deliveryOnly 1 left in stock - order soon.",
-          has_variations: true
+          has_variations: true,
+          brand: "Apple",
+          category: "mobile",
         },
         {
           asin: "B0CTD42NJZ",
@@ -171,7 +185,9 @@ const data = {
           climate_pledge_friendly: false,
           sales_volume: "1K+ bought in past month",
           delivery: "FREE delivery Sat, Aug 10 Or fastest delivery Thu, Aug 8",
-          has_variations: false
+          has_variations: false,
+          brand: "SAMSUNG",
+          category: "mobile",
         },
         {
           asin: "B0B3JYX32K",
@@ -191,7 +207,9 @@ const data = {
           climate_pledge_friendly: true,
           sales_volume: "3K+ bought in past month",
           delivery: "FREE delivery Thu, Aug 8",
-          has_variations: true
+          has_variations: true,
+          brand: "Google",
+          category: "mobile",
         }
       ],
       page: 1

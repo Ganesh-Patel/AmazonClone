@@ -2,46 +2,47 @@ import React, { useState } from 'react';
 import { filterOptions } from '../../AllData/filterOptions'; // Adjust the path as necessary
 import styles from './FilterSidebar.module.css';
 
-const FilterSidebar = ({ onFilterChange }) => {
-  const [selectedFilters, setSelectedFilters] = useState({
-    category: [],
-    priceRange: '',
-    brand: [],
-    customerReview: '',
-  });
+const FilterSidebar = ({ filters, onFilterChange }) => {
   const [showAll, setShowAll] = useState({
     brand: false,
     category: false,
   });
 
   const handleFilterChange = (filterType, value) => {
-    setSelectedFilters((prevFilters) => {
-      let updatedFilters = { ...prevFilters };
+    console.log('object', 12, filterType, value);
+    const updatedFilters = { ...filters };
 
-      if (filterType === 'brand' || filterType === 'category') {
-        if (!Array.isArray(updatedFilters[filterType])) {
-          updatedFilters[filterType] = [];
-        }
-
-        if (updatedFilters[filterType].includes(value)) {
-          updatedFilters[filterType] = updatedFilters[filterType].filter((item) => item !== value);
-        } else {
-          updatedFilters[filterType].push(value);
-        }
-      } else {
-        updatedFilters[filterType] = value;
+    if (filterType === 'brand' || filterType === 'category') {
+      if (!Array.isArray(updatedFilters[filterType])) {
+        updatedFilters[filterType] = [];
       }
 
-      // Notify the parent component about filter changes
-      onFilterChange(updatedFilters);
+      if (updatedFilters[filterType].includes(value)) {
+        updatedFilters[filterType] = updatedFilters[filterType].filter((item) => item !== value);
+      } else {
+        updatedFilters[filterType].push(value);
+      }
+    } else {
+      const filterName = filterType.replace(/[\s_.,]+/g, '').toLowerCase();
+      updatedFilters[filterName] = value;
+    }
+    console.log('object', 27, updatedFilters);
 
-      return updatedFilters;
-    });
+    onFilterChange(updatedFilters);
   };
 
   const handlePriceRangeChange = (event) => {
     const value = event.target.value;
+    console.log('object', value);
     handleFilterChange('priceRange', value);
+  };
+  const clearAllFilters = () => {
+    onFilterChange({category: [],
+      priceRange: '',
+      price: '',
+      brand: [],
+      avgcustomerreview: '',
+      rating: '',}); // Reset filters to an empty object
   };
 
   const renderOptions = (options, type, filterType) => {
@@ -55,7 +56,7 @@ const FilterSidebar = ({ onFilterChange }) => {
           <input
             type="checkbox"
             onChange={() => handleFilterChange(filterType, option.value)}
-            checked={selectedFilters[filterType]?.includes(option.value) || false}
+            checked={filters[filterType]?.includes(option.value) || false}
           />
           {option.label}
         </label>
@@ -69,7 +70,7 @@ const FilterSidebar = ({ onFilterChange }) => {
             type="radio"
             name={filterType}
             onChange={() => handleFilterChange(filterType, option.value)}
-            checked={selectedFilters[filterType] === option.value}
+            checked={filters[filterType] === option.value}
           />
           {option.label}
         </label>
@@ -81,6 +82,9 @@ const FilterSidebar = ({ onFilterChange }) => {
 
   return (
     <div className={styles.filterSidebar}>
+       <button className={styles.clearAllButton} onClick={clearAllFilters}>
+        Clear All Filters
+      </button>
       {filterOptions.map((filter, index) => {
         const isBrandOrCategory = filter.label === 'Brand' || filter.label === 'Category';
         const showMore = showAll[filter.label.toLowerCase()];
@@ -90,7 +94,7 @@ const FilterSidebar = ({ onFilterChange }) => {
             <h3>{filter.label}</h3>
             {filter.label === 'Price Range' ? (
               <select
-                value={selectedFilters.priceRange}
+                value={filters.priceRange}
                 onChange={handlePriceRangeChange}
               >
                 {filter.options.map((option, idx) => (

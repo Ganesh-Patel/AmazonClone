@@ -1,28 +1,40 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useGlobalState } from '../../myContexts/GlobalStateContext';
 import deals from '../../AllData/deals';
-import Card from './../CreateCard/Card'; // Import the Card component
-import FilterSidebar from './../../Filters/Sidebarfilter/FilterSidebar'; // Import the FilterSidebar component
+import Card from '../../AllPages/CreateCard/Card';
+import FilterSidebar from '../../Filters/Sidebarfilter/FilterSidebar';
 import styles from './Appliances.module.css';
 import { toast } from 'react-toastify';
-import { SearchContext } from '../../myContexts/SearchContext'; // Import the SearchContext
+import { SearchContext } from '../../myContexts/SearchContext';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 function Appliances() {
   const { setCartItems } = useGlobalState();
-  const { searchTerm } = useContext(SearchContext); // Use the SearchContext
+  const { searchTerm } = useContext(SearchContext);
   const [filteredData, setFilteredData] = useState(deals[0]?.data?.deals || []);
-  const [allDeals, setAllDeals] = useState(deals[0]?.data?.deals || []); // Store all deals for resetting filters
+  const [allDeals, setAllDeals] = useState(deals[0]?.data?.deals || []);
+  const [filters, setFilters] = useState({
+    category: [],
+    priceRange: '',
+    price: '',
+    brand: [],
+    avgcustomerreview: '',
+    rating: '',
+  });
   const { user, status } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  // Handle adding item to cart
+
   const handleAddToCart = (item) => {
+   
     const { deal_id, deal_title, deal_price, deal_photo } = item;
+    const priceInUSD = parseFloat(deal_price.amount?.replace(/[^0-9.-]+/g, '') || '0');
+    const priceInINR = priceInUSD * 82;
+    console.log('object', priceInINR);
     const newItem = {
       id: deal_id,
       name: deal_title,
-      price: parseInt(deal_price.amount),
+      price: parseInt(priceInINR),
       quantity: 1,
       image: deal_photo,
     };
@@ -35,53 +47,79 @@ function Appliances() {
     }
   };
 
-  // Apply filters to data
-  const handleFilterChange = (filters) => {
-    let filtered = [...allDeals]; // Start with all deals
-
-    // Apply price range filter
-    if (filters.priceRange) {
-      const [minPrice, maxPrice] = filters.priceRange.split('-').map(Number);
-      filtered = filtered.filter((item) => {
-        const price = parseInt(item.deal_price.amount);
-        return price >= minPrice && (!maxPrice || price <= maxPrice);
-      });
-    }
-
-    // Apply brand filter
-    if (filters.brand.length > 0) {
-      filtered = filtered.filter((item) => filters.brand.includes(item.brand));
-    }
-
-    // Apply category filter
-    if (filters.category.length > 0) {
-      filtered = filtered.filter((item) => filters.category.includes(item.category));
-    }
-
-    // Apply customer review filter (if applicable)
-    if (filters.customerReview) {
-      filtered = filtered.filter((item) => item.customer_review === filters.customerReview);
-    }
-
-    setFilteredData(filtered);
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
   };
 
   useEffect(() => {
-    // Filter data based on search term
-    const searchFilteredData = allDeals.filter(item =>
-      item.deal_title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredData(searchFilteredData);
-  }, [searchTerm, allDeals]);
+    let filtered = allDeals;
+
+    if (searchTerm) {
+      filtered = filtered.filter((item) =>
+        item.deal_title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    if (filters.price) {
+      console.log('filters.price', filters.price);
+      let minPrice = 0, maxPrice = Infinity;
+
+      if (filters.price.includes('-')) {
+        // Extract min and max prices from the range
+        [minPrice, maxPrice] = filters.price.split('-').map(price => Number(price.replace(/[^0-9]/g, '')));
+      } else if (filters.price.includes('Over')) {
+        // Extract min price for "Over" range
+        minPrice = Number(filters.price.replace(/[^0-9]/g, ''));
+        maxPrice = Infinity; // No upper limit
+      } else if (filters.price.includes('Under')) {
+        // Extract max price for "Under" range
+        maxPrice = Number(filters.price.replace(/[^0-9]/g, ''));
+      }
+      const conversionRate = 82;
+      filtered = filtered.filter((item) => {
+        const priceInUSD = parseFloat(item.deal_price.amount?.replace(/[^0-9.-]+/g, '') || '0');
+        const priceInINR = priceInUSD * conversionRate;
+        console.log('object', priceInINR, minPrice, maxPrice);
+        return priceInINR >= minPrice && priceInINR <= maxPrice;
+      });
+    }
+    if (filters.brand.length > 0) {
+      console.log('filters.brand', filters.brand);
+      const userSelectedBrands = filters.brand.map(brand => brand.toLowerCase());
+      filtered = filtered.filter((item) => 
+        userSelectedBrands.includes(item.brand.toLowerCase())
+      );
+    }
+
+    if (filters.category.length > 0) {
+      console.log('filters.category', filters.category);
+      filtered = filtered.filter((item) => filters.category.includes(item.category));
+    }
+    //review or rating filter 
+    if (filters.avgcustomerreview) {
+      console.log('filters.customerReview', filters.avgcustomerreview);
+      const reviewThreshold = parseInt(filters.avgcustomerreview.split(' ')[0], 10);
+      console.log('reviewThreshold', reviewThreshold);
+    
+      filtered = filtered.filter((item) => {
+        const itemReview = parseFloat(item.rating) || 0;
+        // console.log('itemReview', itemReview, reviewThreshold);
+        return itemReview >= reviewThreshold;
+      });
+    }
+
+    setFilteredData(filtered);
+  }, [filters, searchTerm, allDeals]);
 
   useEffect(() => {
-    // Reset filters when deals change
     setAllDeals(deals[0]?.data?.deals || []);
   }, [deals]);
 
   return (
     <div className={styles.container}>
-      <FilterSidebar onFilterChange={handleFilterChange} />
+      <div className={styles.sidebar}>
+      <FilterSidebar filters={filters} onFilterChange={handleFilterChange} />
+      </div>
       <div className={styles.content}>
         <div className={styles.dealList}>
           {filteredData.length > 0 ? (

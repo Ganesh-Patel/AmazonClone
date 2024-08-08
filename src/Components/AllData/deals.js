@@ -28,7 +28,10 @@ const deals=[{
           },
           "deal_badge": "23% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B09TMN58KL"
+          "product_asin": "B09TMN58KL",
+          "rating": 4.5,
+          "brand": "Amazon",
+          "category": "Electronics"
         },
         {
           "deal_id": "7ff715e1",
@@ -55,7 +58,10 @@ const deals=[{
           },
           "deal_badge": "18% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B08PZHYWJS"
+          "product_asin": "B08PZHYWJS",
+          "rating": 4,
+          "brand": "Apple",
+          "category": "Electronics"
         },
         {
           "deal_id": "40fabffe",
@@ -82,7 +88,10 @@ const deals=[{
           },
           "deal_badge": "22% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0C9V811L6"
+          "product_asin": "B0C9V811L6",
+          "rating": 4,
+          "brand": "redmi",
+          "category": "Electronics",
         },
         {
           "deal_id": "ac8aefd1",
@@ -109,7 +118,10 @@ const deals=[{
           },
           "deal_badge": "19% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0CMDM65JH"
+          "product_asin": "B0CMDM65JH",
+          "rating": 5,
+          "brand": "Samsung",
+          "category": "Electronics",
         },
         {
           "deal_id": "6646e8df",
@@ -136,7 +148,10 @@ const deals=[{
           },
           "deal_badge": "17% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0B3C2R8MP"
+          "product_asin": "B0B3C2R8MP",
+          "rating": 2,
+          "brand": "Apple",
+          "category": "Electronics",
         },
         {
           "deal_id": "35f80eae",
@@ -163,7 +178,11 @@ const deals=[{
           },
           "deal_badge": "47% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B096SV8SJG"
+          "product_asin": "B096SV8SJG",
+          "rating": 3,
+          "brand": "Beats",
+          "category": "Electronics",
+
         },
         {
           "deal_id": "cc1b7bfa",
@@ -190,7 +209,10 @@ const deals=[{
           },
           "deal_badge": "45% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B08N5NQ869"
+          "product_asin": "B08N5NQ869",
+          "rating": 1,
+          "brand": "oppo",
+          "category": "Electronics",
         },
         {
           "deal_id": "35f80eae",
@@ -217,7 +239,10 @@ const deals=[{
           },
           "deal_badge": "10% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0C8PSMPTH"
+          "product_asin": "B0C8PSMPTH",
+          "rating": 3,
+          "brand": "Beats",
+          "category": "Electronics",
         },
         {
           "deal_id": "0f5ab719",
@@ -244,7 +269,11 @@ const deals=[{
           },
           "deal_badge": "29% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B01N7ENHO6"
+          "product_asin": "B01N7ENHO6",
+          "rating": 2,
+          "brand": "Skylight",
+          "category": "Electronics",
+
         },
         {
           "deal_id": "83387854",
@@ -271,7 +300,11 @@ const deals=[{
           },
           "deal_badge": "17% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B09X2CL5HG"
+          "product_asin": "B09X2CL5HG",
+          "rating": 3,
+          "brand": "Aura",
+          "category": "Electronics",
+
         },
         {
           "deal_id": "29b8c69f",
@@ -298,7 +331,10 @@ const deals=[{
           },
           "deal_badge": "40% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0BP9MDCQZ"
+          "product_asin": "B0BP9MDCQZ",
+          "rating": 1,
+          "brand": "realme",
+          "category": "Electronics",
         },
         {
           "deal_id": "4ecd032a",
@@ -325,7 +361,10 @@ const deals=[{
           },
           "deal_badge": "20% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B09SWW583J"
+          "product_asin": "B09SWW583J",
+          "rating": 3,
+          "brand": "Amazon",
+          "category": "Electronics",
         },
         {
           "deal_id": "a99633ae",
@@ -352,7 +391,11 @@ const deals=[{
           },
           "deal_badge": "50% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B09WNK39JN"
+          "product_asin": "B09WNK39JN",
+          "rating": 3,
+          "brand": "Amazon",
+          "category": "Electronics",
+
         },
         {
           "deal_id": "8aa9a85c",
@@ -379,7 +422,10 @@ const deals=[{
           },
           "deal_badge": "29% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B09BS26B8B"
+          "product_asin": "B09BS26B8B",
+          "rating": 3,
+          "brand": "oneplus",
+          "category": "Electronics",
         },
         {
           "deal_id": "1485277a",
@@ -406,7 +452,10 @@ const deals=[{
           },
           "deal_badge": "20% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B07H6WGWMD"
+          "product_asin": "B07H6WGWMD",
+          "rating": 3,
+          "brand": "Amazon",
+          "category": "Electronics",
         },
         {
           "deal_id": "7c49ed68",
@@ -433,7 +482,10 @@ const deals=[{
           },
           "deal_badge": "38% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0CP6HW894"
+          "product_asin": "B0CP6HW894",
+          "rating": 5,
+          "brand": "Samsung",
+          "category": "Electronics",
         },
         {
           "deal_id": "68bdc57e",
@@ -460,7 +512,10 @@ const deals=[{
           },
           "deal_badge": "33% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0BLS3QJTX"
+          "product_asin": "B0BLS3QJTX",
+          "rating": 5,  
+          "brand": "Amazon",
+          "category": "Electronics",
         },
         {
           "deal_id": "0d74d7f4",
@@ -487,7 +542,10 @@ const deals=[{
           },
           "deal_badge": "20% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0016HF5GK"
+          "product_asin": "B0016HF5GK",
+          "rating": 5,
+          "brand": "Bissell",
+          "category": "Home",
         },
         {
           "deal_id": "c18f3f84",
@@ -514,7 +572,10 @@ const deals=[{
           },
           "deal_badge": "61% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B00TRLVKW0"
+          "product_asin": "B00TRLVKW0",
+          "rating": 4,
+          "brand": "AncestryDNA",
+          "category": "Health",
         },
         {
           "deal_id": "66145a21",
@@ -541,7 +602,10 @@ const deals=[{
           },
           "deal_badge": "32% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0BHZT5S12"
+          "product_asin": "B0BHZT5S12",
+          "rating": 3,
+          "brand": "Amazon",
+          "category": "Alexa Skills",
         },
         {
           "deal_id": "fcd18395",
@@ -568,7 +632,11 @@ const deals=[{
           },
           "deal_badge": "41% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B09MQ5L5N9"
+          "product_asin": "B09MQ5L5N9",
+          "rating": 5,
+          "brand": "Canupdog",
+          "category": "Home",
+
         },
         {
           "deal_id": "a99633ae",
@@ -595,7 +663,10 @@ const deals=[{
           },
           "deal_badge": "44% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B09B8V1LZ3"
+          "product_asin": "B09B8V1LZ3",
+          "rating": 5,
+          "brand": "Amazon",
+          "category": "Alexa Skills",
         },
         {
           "deal_id": "29b8c69f",
@@ -622,7 +693,10 @@ const deals=[{
           },
           "deal_badge": "33% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0BP9SNVH9"
+          "product_asin": "B0BP9SNVH9",
+          "rating": 3,
+          "brand": "Amazon",
+          "category": "Fire TV Stick",
         },
         {
           "deal_id": "c412beb3",
@@ -649,7 +723,11 @@ const deals=[{
           },
           "deal_badge": "29% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0CCZ26B5V"
+          "product_asin": "B0CCZ26B5V",
+          "rating": 2,
+          "brand": "Amazon",
+          "category": "Headphones",
+
         },
         {
           "deal_id": "128cb68c",
@@ -676,7 +754,10 @@ const deals=[{
           },
           "deal_badge": "16% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B0BGPF71Q6"
+          "product_asin": "B0BGPF71Q6",
+          "rating": 1,
+          "brand": "Amazon",
+          "category": "Air Purifiers",
         },
         {
           "deal_id": "1bbdfd58",
@@ -703,7 +784,10 @@ const deals=[{
           },
           "deal_badge": "30% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B09RNDQCV3"
+          "product_asin": "B09RNDQCV3",
+          "rating": 3,
+          "brand": "Amazon",
+          "category": "Leaf Blowers",
         },
         {
           "deal_id": "29b8c69f",
@@ -730,7 +814,10 @@ const deals=[{
           },
           "deal_badge": "38% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B08C1W5N87"
+          "product_asin": "B08C1W5N87",
+          "rating": 5,
+          "brand": "Amazon",
+          "category": "remdi",
         },
         {
           "deal_id": "c412beb3",
@@ -757,7 +844,10 @@ const deals=[{
           },
           "deal_badge": "20% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B099TJGJ91"
+          "product_asin": "B099TJGJ91",
+          "rating": 5,
+          "brand": "Amazon",
+          "category": "Speakers",
         },
         {
           "deal_id": "35f80eae",
@@ -784,7 +874,10 @@ const deals=[{
           },
           "deal_badge": "36% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B07R5QD598"
+          "product_asin": "B07R5QD598",
+          "rating": 5,
+          "brand": "Amazon",
+          "category": "Headphones",
         },
         {
           "deal_id": "35f80eae",
@@ -811,7 +904,10 @@ const deals=[{
           },
           "deal_badge": "20% off",
           "type": "SINGLE_ITEM",
-          "product_asin": "B09JL5CY5Z"
+          "product_asin": "B09JL5CY5Z",
+          "rating": 5,
+          "brand": "Amazon",
+          "category": "Headphones",
         }
       ],
       "total_deals": null,
