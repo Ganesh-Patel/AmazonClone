@@ -61,17 +61,26 @@ Welcome to the E-Commerce Platform, a fully functional Amazon Clone project deve
 - Razorpay account
 - API keys for Amazon Product Data API
 
-### Steps
+## Installation
 
-1. **Clone the Repository**
-    ```bash
-    git clone https://github.com/your-username/ecommerce-platform.git
-    cd ecommerce-platform
+1. **Clone the repository:**
+    ```sh
+    git clone https://github.com/your-username/AmazonClone.git
     ```
 
-2. **Install Dependencies**
-    ```bash
+2. **Navigate to the project directory:**
+    ```sh
+    cd AmazonClone
+    ```
+
+3. **Install dependencies:**
+    ```sh
     npm install
+    ```
+
+4. **Run the development server:**
+    ```sh
+    npm start
     ```
 
 3. **Setup Firebase**
@@ -90,12 +99,6 @@ Welcome to the E-Commerce Platform, a fully functional Amazon Clone project deve
    REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
    REACT_APP_RAZORPAY_KEY=your_razorpay_key
    ```
-
-## Run the Application
-
-```bash
-npm start
-```
 ## Deployment
 
 The application is deployed on [Vercel] (Replace with the appropriate hosting link).
@@ -122,4 +125,8 @@ Contributions are welcome! If you'd like to contribute, please fork the reposito
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Authors
+
+- **Ganesh Patel** - *Initial work* - [Ganesh-Patel](https://github.com/Ganesh-Patel)
 
