@@ -279,10 +279,10 @@ function Nav() {
           {/* Navigation Links */}
           <div className="hidden lg:flex items-center gap-2 flex-grow ml-2">
             <Link
-              to="/fresh"
+              to="/home"
               className="relative text-sm transition-all duration-300 border-transparent hover:border-yellow-500 hover:bg-gray-800 border-2 border-solid rounded-md whitespace-nowrap px-2 py-1"
             >
-              Fresh
+              Home
             </Link>
             <Link
               to="/amazon-mini-tv"
@@ -291,7 +291,7 @@ function Nav() {
               Amazon Mini TV
             </Link>
             <Link
-              to="/sell"
+              to="/mobiles"
               className="relative text-sm transition-all duration-300 border-transparent hover:border-yellow-500 hover:bg-gray-800 border-2 border-solid rounded-md whitespace-nowrap px-2 py-1"
             >
               Sell
@@ -327,7 +327,7 @@ function Nav() {
               Customer Service
             </Link>
             <Link
-              to="/electronics"
+              to="/appliances"
               className="relative text-sm transition-all duration-300 border-transparent hover:border-yellow-500 hover:bg-gray-800 border-2 border-solid rounded-md whitespace-nowrap px-2 py-1"
             >
               Electronics
