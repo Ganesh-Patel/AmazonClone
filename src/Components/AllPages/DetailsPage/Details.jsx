@@ -5,8 +5,8 @@ import initialData from './../../AllData/SearchData';
 import axios from 'axios';
 import { useGlobalState } from '../../myContexts/GlobalStateContext';
 import Loader from './Loaders/Loaders.jsx';
-import { toast } from 'react-toastify'; // Ensure you have react-toastify installed
-import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for toastify
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 import { useSelector } from 'react-redux';
 
 function Details() {
@@ -36,7 +36,6 @@ function Details() {
             } catch (error) {
                 console.error('Error fetching details:', error);
                 toast('API limit reached');
-
                 // Simulate waiting for the loading state before setting fallback data
                 setTimeout(() => {
                     // Check if initialData is an array
@@ -59,7 +58,7 @@ function Details() {
                             };
                             setDetails(mappedFallbackItem);
                         } else {
-                            setDetails(null); // No fallback item found
+                            setDetails(null);
                         }
                     } else {
                         console.error('Initial data format is incorrect.');
@@ -97,8 +96,6 @@ function Details() {
             const originalPrice = parseFloat(item.product_original_price?.replace(/[^0-9.-]+/g, '') || '0');
 
             const priceInINR = convertToINR(price);
-            const originalPriceInINR = convertToINR(originalPrice);
-
             const newItem = {
                 id: item.asin,
                 name: item.product_title,

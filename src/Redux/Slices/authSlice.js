@@ -35,7 +35,7 @@ export const login = (email, password, navigate, from) => async (dispatch) => {
       displayName: userCredential.user.displayName,
     }));
     dispatch(setStatus('succeeded'));
-    toast.success('Login successful'); // Show success toast
+    toast.success('Login successful'); 
     navigate(from, { replace: true });
   } catch (error) {
     dispatch(setError(error.message));
@@ -49,12 +49,13 @@ export const signup = (email, password, navigate) => async (dispatch) => {
     dispatch(setStatus('loading'));
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const { user } = userCredential;
-    dispatch(setUser({
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-    }));
-    dispatch(setStatus('succeeded'));
+    // dispatch(setUser({
+    //   uid: user.uid,
+    //   email: user.email,
+    //   displayName: user.displayName,
+    // }));
+    // dispatch(setStatus('succeeded'));
+    dispatch(setUser(null));
     toast.success('Signup successful');
     navigate('/login');
   } catch (error) {
@@ -68,7 +69,9 @@ export const logout = () => async (dispatch) => {
   try {
     await signOut(auth);
     dispatch(setUser(null));
+    dispatch(setStatus(null));
     toast.info('Logged out successfully');
+    // navigate('/login');
   } catch (error) {
     dispatch(setError(error.message));
     toast.error(`Logout failed: ${error.message}`);

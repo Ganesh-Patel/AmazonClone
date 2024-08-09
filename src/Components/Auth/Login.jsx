@@ -53,7 +53,7 @@ function Login() {
             />
           </div>
           <button type="submit" className={styles.button}>
-            {authStatus === 'loading' ? 'Loading...' : 'Login'}
+            {authStatus === 'loading' ? 'Login' : 'Login'}
           </button>
           {authError && <p className={styles.error}>{authError}</p>}
         </form>

@@ -1,14 +1,21 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { formatEmail } from '../../Utils/truncateText';
+import { logout } from '../../../Redux/Slices/authSlice'; 
+import { useNavigate } from 'react-router-dom';
 
 const LeftSidebar = ({ isOpen, onClose }) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { user, status } = useSelector((state) => state.auth);
-    console.log(user, status);
 
+    const handleLogout = (e) => {
+      e.preventDefault();
+      dispatch(logout());
+      navigate('/login'); // Redirect to the login page after logout
+    };
 
- 
   return (
     <div
       className={`fixed top-0 left-0 h-full bg-gray-800 text-white z-50 transform ${
@@ -16,8 +23,10 @@ const LeftSidebar = ({ isOpen, onClose }) => {
       } transition-transform duration-300 ease-in-out`}
       style={{ width: '30vw' }}
     >
-      <div className="hidden md:flex   justify-between items-center p-4 bg-black">
-        <h2 className="text-xl font-bold">Hello,{status === 'succeeded' && user ? user.displayName || formatEmail(user.email) : 'Sign In'} </h2>
+      <div className="hidden md:flex justify-between items-center p-4 bg-black">
+        <h2 className="text-xl font-bold">
+          Hello, {status === 'succeeded' && user ? user.displayName || formatEmail(user.email) : 'Sign In'}
+        </h2>
         <button onClick={onClose}>
           <FaTimes />
         </button>
@@ -28,7 +37,6 @@ const LeftSidebar = ({ isOpen, onClose }) => {
           <li>Best Sellers</li>
           <li>New Releases</li>
           <li>Movers and Shakers</li>
-          {/* Add more items as needed */}
           <li>See less</li>
         </ul>
         <h3 className="font-bold mt-4">Programs & Features</h3>
@@ -43,7 +51,11 @@ const LeftSidebar = ({ isOpen, onClose }) => {
         <ul className="space-y-2">
           <li>Your Account</li>
           <li>Customer Service</li>
-          <li>Sign in</li>
+          <li>
+            <button onClick={handleLogout} className="text-left w-full">
+              Sign Out
+            </button>
+          </li>
         </ul>
       </div>
     </div>

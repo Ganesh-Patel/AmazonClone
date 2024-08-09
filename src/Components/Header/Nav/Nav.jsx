@@ -14,6 +14,7 @@ import { SearchContext } from '../../myContexts/SearchContext';
 import { useGlobalState } from '../../myContexts/GlobalStateContext';
 import { formatEmail } from '../../Utils/truncateText';
 import LocationModal from '../Modal/LocationModal ';
+import { logout } from '../../../Redux/Slices/authSlice';
 
 function Nav() {
   const { cartItems } = useGlobalState();
@@ -32,19 +33,14 @@ function Nav() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const accountMenuRef = useRef(null);
-
-  // const { setSearchTerm } = useSearch();
-  // const handleSearchChange = (e) => {
-  //   console.log(e.target.value);
-  //   console.log('search handler called here');
-  //   setSearchTerm(e.target.value);
-  // };
-
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
-
-
   const { data: categoryList, loading, error } = useSelector((state) => state.category);
 
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    navigate('/home');
+  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -105,6 +101,7 @@ function Nav() {
       navigate('/'); // Or handle the 'all' option as needed
     }
   };
+
   return (
     <div className=" text-white p-1 relative" style={{ backgroundColor: "#131921" }}>
       <div className="flex items-center justify-between max-w-7xl mx-auto px-4">
@@ -114,7 +111,7 @@ function Nav() {
               <img src={amazonLogo} alt="Amazon Logo" className="w-32" />
             </Link>
           </div>
-          <div className="hidden lg:flex items-center ml-4 group"  onClick={() => setModalOpen(true)} >
+          <div className="hidden lg:flex items-center ml-4 group" onClick={() => setModalOpen(true)} >
             <div className="flex items-center border border-transparent p-2 group-hover:border-white">
               <FaMapMarkerAlt className="text-yellow-400" />
               <div className="ml-2">
@@ -269,10 +266,61 @@ function Nav() {
 
 
       {isMobileMenuOpen && (
-        <div className="absolute top-16 left-0 w-full bg-gray-700 p-4 rounded-md shadow-lg z-50">
-          {/* Mobile menu content here */}
+        <div className="lg:hidden absolute top-0 right-0 w-50 h-full bg-black text-white z-20">
+          <div className="p-4 bg-black ">
+            <button onClick={toggleMobileMenu} className="text-white absolute top-2 right-2 focus:outline-none mb-4">
+              <FaTimes />
+            </button>
+            <div className="space-y-4">
+              <div className="flex flex-col justify-center items-center py-4">
+                <FaUser className="w-8 h-8 mb-2" />
+                {status === 'succeeded' ? (
+                  <span className="font-bold text-center">{user.email}</span>
+                ) : (
+                  <Link to="/signup" className="font-bold text-center">
+                    Register
+                  </Link>
+                )}
+              </div>
+
+
+              <Link
+                to={status === 'succeeded' ? '#' : '/login'}
+                onClick={(e) => {
+                  if (status === 'succeeded') {
+                    e.preventDefault();
+                    handleLogout(e); // Call the logout handler
+                  } else {
+                    toggleMobileMenu(); // Handle the menu toggle when signing in
+                  }
+                }}
+                className="block"
+              >
+                <span className="font-bold">
+                  {status === 'succeeded' ? 'Sign Out' : 'Sign In'}
+                </span>
+              </Link>
+
+              <Link to="/home" onClick={toggleMobileMenu} className="block">
+                <span className="font-bold">Home</span>
+              </Link>
+              <Link to="/myorders" onClick={toggleMobileMenu} className="block">
+                <span className="font-bold">Returns & Orders</span>
+              </Link>
+              <Link to="/cart" onClick={toggleMobileMenu} className="block">
+                <FaShoppingCart className="inline mr-2" />
+                <span>Cart ({cartItems.length})</span>
+              </Link>
+
+              <div className="flex items-center space-x-2">
+                <img src={indiaFlag} alt="Indian Flag" className="w-5 h-5" />
+                <button onClick={toggleLanguageMenu}>{selectedLanguage}</button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
+
       <div id={style.Nav2} style={{ width: "100%", backgroundColor: "#242F3E" }} className="left-0 w-full text-white py-1 Nav2 ">
         <div className="flex items-center justify-between max-w-full px-2">
           {/* Hamburger Icon */}
