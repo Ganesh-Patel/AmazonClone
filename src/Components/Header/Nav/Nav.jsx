@@ -12,6 +12,8 @@ import { fetchCategoryList } from '../../../Redux/Slices/categorySlice';
 import { useSearch } from '../../Filters/useSearch';
 import { SearchContext } from '../../myContexts/SearchContext';
 import { useGlobalState } from '../../myContexts/GlobalStateContext';
+import { formatEmail } from '../../Utils/truncateText';
+import LocationModal from '../Modal/LocationModal ';
 
 function Nav() {
   const { cartItems } = useGlobalState();
@@ -21,6 +23,8 @@ function Nav() {
   const [selectedLanguage, setSelectedLanguage] = useState('EN');
   const [tempLanguage, setTempLanguage] = useState(selectedLanguage);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const location = useSelector((state) => state.location.location);
 
   const { user, status } = useSelector((state) => state.auth);
   console.log(user, status);
@@ -110,17 +114,17 @@ function Nav() {
               <img src={amazonLogo} alt="Amazon Logo" className="w-32" />
             </Link>
           </div>
-          <div className="hidden lg:flex items-center ml-4 group">
+          <div className="hidden lg:flex items-center ml-4 group"  onClick={() => setModalOpen(true)} >
             <div className="flex items-center border border-transparent p-2 group-hover:border-white">
               <FaMapMarkerAlt className="text-yellow-400" />
               <div className="ml-2">
-                <div className="text-xs">Deliver to New Delhi 110019</div>
+                <div className="text-xs">{`Deliver to ${location}`}</div>
                 <div className="text-sm font-bold">Update Location</div>
               </div>
             </div>
           </div>
         </div>
-
+        <LocationModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
         <div className="flex flex-1 mx-4 items-center bg-gray-700 rounded-md overflow-hidden lg:ml-6">
           <select onChange={handleCategoryChange} className="p-2 flex-shrink-0 border-none bg-gray-700 text-white focus:outline-none h-full w-14">
             <option value="all">All</option>
@@ -151,7 +155,7 @@ function Nav() {
           </div>
           <div className="flex flex-col items-start cursor-pointer group" onClick={toggleAccountMenu}>
             <div className="flex flex-col items-start border border-transparent p-2 group-hover:border-white">
-              <span className="text-xs">{status === 'succeeded' && user ? user.displayName || user.email : 'Sign In'}</span>
+              <span className="text-xs">{status === 'succeeded' && user ? user.displayName || formatEmail(user.email) : 'Sign In'}</span>
               <span className="flex items-center space-x-1">
                 <span className="font-bold">Account & Lists</span>
                 <GoTriangleDown />

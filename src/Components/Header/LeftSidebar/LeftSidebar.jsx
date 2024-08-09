@@ -1,10 +1,14 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
+import { formatEmail } from '../../Utils/truncateText';
 
 const LeftSidebar = ({ isOpen, onClose }) => {
     const { user, status } = useSelector((state) => state.auth);
     console.log(user, status);
+
+
+ 
   return (
     <div
       className={`fixed top-0 left-0 h-full bg-gray-800 text-white z-50 transform ${
@@ -13,7 +17,7 @@ const LeftSidebar = ({ isOpen, onClose }) => {
       style={{ width: '30vw' }}
     >
       <div className="hidden md:flex   justify-between items-center p-4 bg-black">
-        <h2 className="text-xl font-bold">Hello,{status === 'succeeded' && user ? user.displayName || user.email : 'Sign In'} </h2>
+        <h2 className="text-xl font-bold">Hello,{status === 'succeeded' && user ? user.displayName || formatEmail(user.email) : 'Sign In'} </h2>
         <button onClick={onClose}>
           <FaTimes />
         </button>
