@@ -63,7 +63,6 @@ function Home() {
       {/* <Carouseltiming /> */}
 
       <div className={styles.productContainer}>
-
         <Products />
       </div>
 

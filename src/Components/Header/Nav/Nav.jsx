@@ -98,12 +98,12 @@ function Nav() {
     if (selectedCategory !== 'all') {
       navigate(`/${categoryPath.toLowerCase()}`);
     } else {
-      navigate('/'); // Or handle the 'all' option as needed
+      navigate('/'); 
     }
   };
 
   return (
-    <div className=" text-white p-1 relative" style={{ backgroundColor: "#131921" }}>
+    <div className=" text-white p-1 relative z-50" style={{ backgroundColor: "#131921" }}>
       <div className="flex items-center justify-between max-w-7xl mx-auto px-4">
         <div className="flex items-center">
           <div className="group border border-transparent p-2 group-hover:border-white">
