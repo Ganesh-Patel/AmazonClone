@@ -1,5 +1,5 @@
 // src/components/ProductDetails.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -9,6 +9,10 @@ const ProductDetails = () => {
   const product = useSelector((state) =>
     state.product.products.find((p) => p.id === parseInt(id))
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!product) {
     return <div>Product not found!</div>;

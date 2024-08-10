@@ -23,7 +23,6 @@ const ProductCard = ({ product }) => {
   const { setCartItems } = useGlobalState();
 
   const handleAddToCart = (item) => {
-    console.log('object', formattedPrice);
     if (status === 'succeeded') {
 
       const newItem = {

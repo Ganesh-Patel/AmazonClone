@@ -282,8 +282,6 @@ function Nav() {
                   </Link>
                 )}
               </div>
-
-
               <Link
                 to={status === 'succeeded' ? '#' : '/login'}
                 onClick={(e) => {
