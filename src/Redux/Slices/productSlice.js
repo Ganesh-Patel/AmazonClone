@@ -24,11 +24,12 @@ const productSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        filterProducts: (state, action) => {
-        },
         searchProducts: (state, action) => {
-
-        },
+            const searchTerm = action.payload.toLowerCase();
+            state.filteredProducts = state.products.filter((product) =>
+                product.title.toLowerCase().includes(searchTerm)
+            );
+        }
     },
     extraReducers: (builder) => {
         builder

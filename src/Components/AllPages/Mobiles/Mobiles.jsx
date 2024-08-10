@@ -117,7 +117,7 @@ const Mobiles = () => {
             price={parseFloat(product.product_price?.replace(/[^0-9.-]+/g, '') || '0')}
             currency={product.currency}
             originalPrice={parseFloat(product.product_original_price?.replace(/[^0-9.-]+/g, '') || '0')}
-            savings={{ amount: '500' }} // Adjust as necessary
+            savings={{ amount: '500' }} 
             linkUrl={product.asin}
             onActionClick={() => handleAddToCart(product)}
             actionLabel="Add to Cart"

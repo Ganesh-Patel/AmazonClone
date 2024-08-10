@@ -49,12 +49,7 @@ export const signup = (email, password, navigate) => async (dispatch) => {
     dispatch(setStatus('loading'));
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const { user } = userCredential;
-    // dispatch(setUser({
-    //   uid: user.uid,
-    //   email: user.email,
-    //   displayName: user.displayName,
-    // }));
-    // dispatch(setStatus('succeeded'));
+
     dispatch(setUser(null));
     toast.success('Signup successful');
     navigate('/login');
@@ -64,6 +59,13 @@ export const signup = (email, password, navigate) => async (dispatch) => {
     toast.error(`Signup failed: ${error.message}`);
   }
 };
+
+    // dispatch(setUser({
+    //   uid: user.uid,
+    //   email: user.email,
+    //   displayName: user.displayName,
+    // }));
+    // dispatch(setStatus('succeeded'));
 
 export const logout = () => async (dispatch) => {
   try {

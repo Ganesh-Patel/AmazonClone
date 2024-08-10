@@ -1,29 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from '../../../Redux/Slices/productSlice'; // Ensure this path is correct
+import { fetchProducts, searchProducts } from '../../../Redux/Slices/productSlice'; // Ensure this path is correct
 import ProductCard from './ProductCard/ProductCard';
 import { SearchContext } from '../../myContexts/SearchContext';
 
 const ProductsPage = () => {
-  const { products, status, error } = useSelector((state) => state.product || { products: [], status: 'idle', error: null });
+  const { products, filteredProducts, status, error } = useSelector((state) => state.product || { products: [], filteredProducts: [], status: 'idle', error: null });
   const dispatch = useDispatch();
   const { searchTerm } = useContext(SearchContext);
-  const [filteredProducts, setFilteredProducts] = useState(products);
 
-  let filtered = products;
   useEffect(() => {
-    console.log('object search is changing')
-
-    if (searchTerm) {
-      setFilteredProducts(
-        products.filter((item) =>
-          item.title.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      );
-    } else {
-      setFilteredProducts(products);
-    }
-  }, [searchTerm, products]);
+    dispatch(searchProducts(searchTerm));
+  }, [dispatch, searchTerm]);
 
   useEffect(() => {
     if (status === 'idle') {
