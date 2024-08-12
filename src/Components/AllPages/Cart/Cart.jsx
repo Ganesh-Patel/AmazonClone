@@ -3,48 +3,46 @@ import { useNavigate } from 'react-router-dom';
 import style from './Cart.module.css';
 import Razorpay from 'react-razorpay';
 import { toast } from 'react-toastify';
-import { useGlobalState } from '../../myContexts/GlobalStateContext'; 
+import { useGlobalState } from '../../myContexts/GlobalStateContext';
 import { useSelector } from 'react-redux';
-function Cart({  onUpdateItemQuantity, onDeleteItem }) {
-    const { cartItems, setCartItems, orders,setOrders } = useGlobalState();
-    const location = useSelector((state) => state.location.location);
+function Cart({ onUpdateItemQuantity, onDeleteItem }) {
+  const { cartItems, setCartItems, orders, setOrders } = useGlobalState();
+  const location = useSelector((state) => state.location.location);
   const navigate = useNavigate();
   const isEmpty = cartItems.length === 0;
-
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const calculateDeliveryDate = () => {
     const currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() + 4); 
+    currentDate.setDate(currentDate.getDate() + 4);
     const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
     const day = String(currentDate.getDate()).padStart(2, '0');
-  
-    return `${year}-${month}-${day}`; 
+
+    return `${year}-${month}-${day}`;
   };
   const handlePayment = () => {
     const options = {
-        key: "rzp_test_FxRK4tM1aleKRe",
-        key_secret: "pxZi3HhnspLHh5kMQbqxMamd",
-        amount: parseInt(totalPrice) * 100,
+      key: "rzp_test_FxRK4tM1aleKRe",
+      key_secret: "pxZi3HhnspLHh5kMQbqxMamd",
+      amount: parseInt(totalPrice) * 100,
       currency: 'INR',
       name: 'Amazon',
       description: 'Test Transaction',
       image: 'https://i.pinimg.com/736x/8a/b0/12/8ab0121c7d7a90f6415b4b0edaf035d9.jpg',
       handler: function (response) {
-       
         setOrders([
-            ...orders,
-            {
-              items: cartItems,
-              totalPrice: totalPrice,
-              deliveryDate: calculateDeliveryDate(),
-              address: location,
-            },
-          ]);
-          setCartItems([]);
-          navigate('/myorders');
-          toast('Payment Successful!');
+          ...orders,
+          {
+            items: cartItems,
+            totalPrice: totalPrice,
+            deliveryDate: calculateDeliveryDate(),
+            address: location,
+          },
+        ]);
+        setCartItems([]);
+        navigate('/myorders');
+        toast('Payment Successful!');
       },
       prefill: {
         name: 'your name',

@@ -58,9 +58,6 @@ function App() {
           <Route path='/cell-phones-&-accessories' element={<Mobiles />} />
           <Route path='/home/cell-phones-&-accessories' element={<Mobiles />} />
           <Route path="/details/:id" element={<Details />} />
-
-        
-
           <Route
             path="/cart"
             element={<Cart
